@@ -33,6 +33,75 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Hero Section Auto Slideshow (Every 2 seconds)
+  const slides = document.querySelectorAll('.hero-slider .slide');
+  const dots = document.querySelectorAll('.slider-dots .dot');
+  let currentSlide = 0;
+  let slideInterval;
+
+  function showSlide(index) {
+    if (slides.length === 0) return;
+
+    // Wrap around index
+    if (index >= slides.length) {
+      currentSlide = 0;
+    } else if (index < 0) {
+      currentSlide = slides.length - 1;
+    } else {
+      currentSlide = index;
+    }
+
+    slides.forEach((slide, i) => {
+      if (i === currentSlide) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === currentSlide) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  function startSlideshow() {
+    stopSlideshow();
+    slideInterval = setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 2000); // Sliding per 2 seconds
+  }
+
+  function stopSlideshow() {
+    if (slideInterval) {
+      clearInterval(slideInterval);
+    }
+  }
+
+  // Initialize Slideshow
+  if (slides.length > 0) {
+    showSlide(0);
+    startSlideshow();
+
+    // Dot navigation
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        showSlide(idx);
+        startSlideshow(); // Reset timer
+      });
+    });
+
+    // Pause on hover
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+      heroSection.addEventListener('mouseenter', stopSlideshow);
+      heroSection.addEventListener('mouseleave', startSlideshow);
+    }
+  }
+
   // Active Link Highlight on Scroll
   const sections = document.querySelectorAll('section[id]');
   window.addEventListener('scroll', () => {

@@ -45,9 +45,18 @@
     </div>
   </header>
 
-  <!-- Home / Hero Section -->
+  <!-- Home / Hero Section with Auto Slide Show (Every 2 Secs) -->
   <section id="home" class="hero">
-    <div class="container">
+    <div class="hero-slider" id="heroSlider">
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=1920&q=80');"></div>
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80');"></div>
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80');"></div>
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1920&q=80');"></div>
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');"></div>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-container">
       <div class="hero-content">
         <div class="hero-badge">
           <i class="fa-solid fa-award"></i> Specialists in Elevator & Escalator Aesthetics
@@ -60,6 +69,15 @@
           <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Get Free Quote</a>
           <a href="#services" class="btn btn-outline"><i class="fa-solid fa-compass"></i> Explore Services</a>
         </div>
+      </div>
+
+      <!-- Slide Indicators / Dots -->
+      <div class="slider-dots" id="sliderDots">
+        <span class="dot active" data-slide="0"></span>
+        <span class="dot" data-slide="1"></span>
+        <span class="dot" data-slide="2"></span>
+        <span class="dot" data-slide="3"></span>
+        <span class="dot" data-slide="4"></span>
       </div>
     </div>
   </section>
@@ -98,7 +116,7 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Skylark Elevators Fabrication Facility">
+          <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=1000&q=80" alt="Skylark Elevators Facility & High-rise Complex">
           <div class="about-badge">
             <div class="number">100%</div>
             <div class="label">Quality Commitment</div>
@@ -136,35 +154,55 @@
 
       <div class="products-grid">
         <div class="product-card">
-          <div class="product-icon">
-            <i class="fa-solid fa-door-open"></i>
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Elevator Cabin Interior Design">
           </div>
-          <h3>Cabin Interiors & Ceilings</h3>
-          <p>Luxurious stainless steel, mirror finishes, wood veneer, and LED decorative ceilings engineered for elevator cabins.</p>
+          <div class="product-body">
+            <div class="product-icon">
+              <i class="fa-solid fa-door-open"></i>
+            </div>
+            <h3>Cabin Interiors & Ceilings</h3>
+            <p>Luxurious stainless steel, mirror finishes, wood veneer, and LED decorative ceilings engineered for elevator cabins.</p>
+          </div>
         </div>
 
         <div class="product-card">
-          <div class="product-icon">
-            <i class="fa-solid fa-border-all"></i>
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=600&q=80" alt="Architraves & Door Cladding">
           </div>
-          <h3>Architraves & Door Cladding</h3>
-          <p>Precision-formed stainless steel architraves, door skins, jambs, and glass doors with custom etched patterns.</p>
+          <div class="product-body">
+            <div class="product-icon">
+              <i class="fa-solid fa-border-all"></i>
+            </div>
+            <h3>Architraves & Door Cladding</h3>
+            <p>Precision-formed stainless steel architraves, door skins, jambs, and glass doors with custom etched patterns.</p>
+          </div>
         </div>
 
         <div class="product-card">
-          <div class="product-icon">
-            <i class="fa-solid fa-stairs"></i>
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="Escalator Cladding">
           </div>
-          <h3>Escalator Cladding & Bollards</h3>
-          <p>Sleek outer/under escalator cladding panels, floor bollards, and safety glass guards built to strict standards.</p>
+          <div class="product-body">
+            <div class="product-icon">
+              <i class="fa-solid fa-stairs"></i>
+            </div>
+            <h3>Escalator Cladding & Bollards</h3>
+            <p>Sleek outer/under escalator cladding panels, floor bollards, and safety glass guards built to strict standards.</p>
+          </div>
         </div>
 
         <div class="product-card">
-          <div class="product-icon">
-            <i class="fa-solid fa-grip-lines-vertical"></i>
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Handrails & Cabin Flooring">
           </div>
-          <h3>Handrails & Cabin Flooring</h3>
-          <p>Ergonomic stainless handrails, stone, marble, and heavy-duty anti-slip PVC floor linings for passenger lifts.</p>
+          <div class="product-body">
+            <div class="product-icon">
+              <i class="fa-solid fa-grip-lines-vertical"></i>
+            </div>
+            <h3>Handrails & Cabin Flooring</h3>
+            <p>Ergonomic stainless handrails, stone, marble, and heavy-duty anti-slip PVC floor linings for passenger lifts.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -196,7 +234,7 @@
         <!-- Service 2 -->
         <div class="service-card">
           <div class="service-img">
-            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="Architraves & Door Cladding">
+            <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=600&q=80" alt="Architraves & Door Cladding">
           </div>
           <div class="service-body">
             <div class="service-icon"><i class="fa-solid fa-door-closed"></i></div>
@@ -209,7 +247,7 @@
         <!-- Service 3 -->
         <div class="service-card">
           <div class="service-img">
-            <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=600&q=80" alt="Escalator Aesthetics">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="Escalator Aesthetics">
           </div>
           <div class="service-body">
             <div class="service-icon"><i class="fa-solid fa-stairs"></i></div>
@@ -260,7 +298,7 @@
       <div class="contact-grid">
         <!-- Showcase Image Card -->
         <div class="contact-showcase">
-          <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=800&q=80" alt="Elevator Engineering Showcase">
+          <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=1000&q=80" alt="Elevator Engineering Showcase">
           <div class="contact-showcase-overlay">
             <h3>Custom Aesthetic Engineering</h3>
             <p>Elevator cabin interiors, escalator cladding & specialized architectural metal fabrication.</p>
