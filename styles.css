@@ -187,7 +187,7 @@ ul {
 /* Hero Section */
 .hero {
   position: relative;
-  background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=1920&q=80');
+  background: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80');
   background-size: cover;
   background-position: center;
   color: var(--white);
@@ -580,50 +580,73 @@ ul {
   gap: 3rem;
 }
 
-.contact-info-box {
-  background-color: var(--dark-text);
-  color: var(--white);
-  padding: 2.5rem;
+.contact-showcase {
+  position: relative;
   border-radius: var(--radius-md);
-  border-top: 5px solid var(--primary-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 450px;
 }
 
-.contact-info-box h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
+.contact-showcase img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contact-showcase-overlay {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 70%, transparent 100%);
+  padding: 2.5rem 2rem 2rem;
+  color: var(--white);
+}
+
+.contact-showcase-overlay h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+}
+
+.contact-showcase-overlay p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
   margin-bottom: 1.5rem;
 }
 
-.info-item {
-  display: flex;
-  gap: 1.25rem;
-  margin-bottom: 1.75rem;
-  align-items: flex-start;
-}
-
-.info-icon {
-  width: 45px;
-  height: 45px;
-  background-color: rgba(16, 185, 129, 0.15);
-  color: var(--primary-color);
-  border-radius: var(--radius-sm);
+.contact-person-badge {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  flex-shrink: 0;
+  gap: 1rem;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--primary-color);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(4px);
 }
 
-.info-text h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #cbd5e1;
-  margin-bottom: 0.25rem;
+.contact-person-badge i {
+  font-size: 1.8rem;
+  color: var(--primary-color);
 }
 
-.info-text p, .info-text a {
-  font-size: 1.05rem;
+.contact-person-info h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
   color: var(--white);
+}
+
+.contact-person-info p {
+  font-size: 0.9rem;
+  color: #34d399;
+  margin-bottom: 0;
   font-weight: 600;
 }
 
