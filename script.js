@@ -1,4 +1,4 @@
-// Skylark Engineering & Construction - Main JavaScript
+// Skylark Elevators And Fabrication Company - Main JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
   // Mobile Navigation Toggle
@@ -65,15 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const service = document.getElementById('formService').value;
       const message = document.getElementById('formMessage').value.trim();
 
-      // Representative Shafi's target contact payload
-      // Pre-formatted WhatsApp text message targeting Shafi
-      const textMessage = `Hello Shafi (Skylark Engineering & Construction),\n\nI would like to make an inquiry:\n- Name: ${name}\n- Phone: ${phone}\n- Service Interested: ${service}\n- Message: ${message}`;
+      // Representative Shafi's contact
+      const textMessage = `Hello Shafi (Skylark Elevators And Fabrication Company),\n\nI would like to make an inquiry:\n- Name: ${name}\n- Phone: ${phone}\n- Service/Product Interested: ${service}\n- Message: ${message}`;
 
       const encodedMessage = encodeURIComponent(textMessage);
 
-      // Redirect to WhatsApp API / web interface
-      // Standard placeholder or active contact number for Shafi
-      const whatsappNumber = '919876543210';
+      // WhatsApp contact number for Shafi (National Number: 7054929356)
+      const whatsappNumber = '917054929356';
       const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
 
       // Open WhatsApp in a new window/tab
