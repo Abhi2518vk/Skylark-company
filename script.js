@@ -65,12 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const service = document.getElementById('formService').value;
       const message = document.getElementById('formMessage').value.trim();
 
-      // Representative Shafi's contact
-      const textMessage = `Hello Shafi (Skylark Elevators And Fabrication Company),\n\nI would like to make an inquiry:\n- Name: ${name}\n- Phone: ${phone}\n- Service/Product Interested: ${service}\n- Message: ${message}`;
+      // Skylark Elevators And Fabrication Company WhatsApp Message
+      const textMessage = `Hello Skylark Elevators And Fabrication Company,\n\nI would like to make an enquiry:\n- Name: ${name}\n- Phone: ${phone}\n- Service/Product Interested: ${service}\n- Message: ${message}`;
 
       const encodedMessage = encodeURIComponent(textMessage);
 
-      // WhatsApp contact number for Shafi (National Number: 7054929356)
+      // WhatsApp contact number (National Number: 7054929356)
       const whatsappNumber = '917054929356';
       const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
 
