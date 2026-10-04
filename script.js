@@ -278,6 +278,9 @@ function initProducts() {
       const card = button.closest(".product-card");
       const detail = productDetails[button.dataset.product];
       const sourceImage = card.querySelector("img");
+      const productImage = button.dataset.productImage;
+      if (!productImage) return;
+      const isDrawing = productImage.endsWith(".svg");
       selectedTitle = button.childNodes[0].textContent.trim();
       document.querySelector("#dialogTitle").textContent = selectedTitle;
       document.querySelector("#dialogCategory").textContent =
@@ -285,8 +288,14 @@ function initProducts() {
       document.querySelector("#dialogDescription").textContent =
         detail.description;
       const image = document.querySelector("#dialogImage");
-      image.src = sourceImage.getAttribute("src");
-      image.alt = sourceImage.alt;
+      image.src = productImage;
+      image.alt = isDrawing
+        ? selectedTitle + " — explanatory component illustration"
+        : sourceImage.alt;
+      image.classList.toggle("is-illustration", isDrawing);
+      document.querySelector("#dialogImageNote").textContent = isDrawing
+        ? "Concept illustration — not a fabrication drawing or certified safety design."
+        : "Illustrative photograph — not a completed Skylark project.";
       document.querySelector("#dialogFeatures").replaceChildren(
         ...detail.features.map((feature) => {
           const item = document.createElement("li");
@@ -400,9 +409,14 @@ function initEnquiry() {
     event.preventDefault();
     const name = form.elements.name.value.trim();
     const phone = form.elements.phone.value.trim();
+    const company = form.elements.company.value.trim();
+    const email = form.elements.email.value.trim();
     const message = form.elements.message.value.trim();
     form.elements.name.setCustomValidity(
       name.length >= 2 ? "" : "Please enter your name.",
+    );
+    form.elements.company.setCustomValidity(
+      company.length >= 2 ? "" : "Please enter your company name.",
     );
     const digitCount = phone.replace(/\D/g, "").length;
     const validPhone =
@@ -416,7 +430,7 @@ function initEnquiry() {
         : "Please add at least 10 characters about your requirements.",
     );
     if (!form.reportValidity()) return;
-    const text = `Hello Skylark Elevators And Fabrication Company,\n\nI would like to discuss a requirement:\nName: ${name}\nPhone: ${phone}\nSolution: ${form.elements.service.value}\n\n${message}`;
+    const text = `Hello Skylark Elevators And Fabrication Company,\n\nI would like to discuss a requirement:\nName: ${name}\nCompany: ${company}\nBusiness email: ${email}\nPhone: ${phone}\nSolution: ${form.elements.service.value}\n\n${message}`;
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
     fallback.href = url;
     fallback.hidden = false;

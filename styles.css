@@ -721,10 +721,6 @@ summary::-webkit-details-marker {
   gap: 20px;
   padding-block: 28px;
 }
-.service-index {
-  font-size: 11px;
-  color: var(--blue);
-}
 .services-list h3 {
   font-size: 18px;
   letter-spacing: -0.3px;
@@ -739,7 +735,7 @@ details[open] .expand {
   transform: rotate(45deg);
 }
 .service-description {
-  padding: 0 25px 30px 35px;
+  padding: 0 0 30px;
 }
 .service-description p {
   font-size: 13px;
@@ -1615,8 +1611,8 @@ dialog::backdrop {
     font-size: 16px;
   }
   .service-description {
-    padding-left: 30px;
-    padding-right: 10px;
+    padding-left: 0;
+    padding-right: 0;
   }
   .process-grid {
     grid-template-columns: 1fr 1fr;
@@ -2302,5 +2298,145 @@ dialog::backdrop {
   }
   to {
     transform: scale(1.045);
+  }
+}
+
+.brand-intro {
+  display: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .brand-intro {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: #f7fafc;
+    pointer-events: none;
+    animation: brand-intro-exit 1100ms ease-in-out forwards;
+  }
+  .brand-intro-mark {
+    text-align: center;
+    animation: brand-intro-appear 650ms ease-out both;
+  }
+}
+.brand-intro-mark img {
+  width: 78px;
+  height: auto;
+  margin: 0 auto 18px;
+}
+.brand-intro-mark strong {
+  display: block;
+  font-size: 27px;
+  letter-spacing: 5px;
+  color: var(--navy);
+}
+.brand-intro-mark span {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+body:focus-within .brand-intro {
+  display: none;
+}
+@keyframes brand-intro-appear {
+  from {
+    opacity: 0.2;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes brand-intro-exit {
+  0%,
+  55% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.principles article {
+  border-left: 2px solid var(--blue);
+  padding-left: 24px;
+}
+.principles .eyebrow {
+  font-size: 10px;
+  margin: 0 0 16px;
+  color: var(--blue);
+}
+.principles h3 {
+  font-size: clamp(22px, 2vw, 28px);
+  letter-spacing: -0.6px;
+}
+.expertise-intro p.technical-note {
+  font-size: 12px;
+  padding-top: 22px;
+  margin-top: 25px;
+  border-top: 1px solid var(--line);
+}
+.service-photo {
+  margin: 0 0 22px;
+}
+.service-photo img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.service-photo figcaption {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.company-location span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  color: var(--blue);
+}
+.company-location strong {
+  display: block;
+  font-size: 23px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-top: 6px;
+}
+.contact-map {
+  margin: 26px 0 0;
+}
+.contact-map img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: #edf3f7;
+}
+.contact-map figcaption {
+  color: var(--ink);
+  font-size: 12px;
+  margin-top: 14px;
+}
+.contact-map figcaption span {
+  color: var(--muted);
+  font-size: 11px;
+}
+.dialog-grid > img.is-illustration {
+  object-fit: contain;
+  background: #f3f6f7;
+}
+.dialog-copy > p.image-kind {
+  font-size: 11px;
+  color: var(--blue-hover);
+}
+@media (max-width: 560px) {
+  .principles article {
+    padding-left: 18px;
+  }
+  .contact-map figcaption {
+    font-size: 12px;
   }
 }

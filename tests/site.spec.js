@@ -105,6 +105,8 @@ test("WhatsApp validates consent and phone, encodes details, and handles blocked
     };
   });
   await page.locator("#fullName").fill("Release Test");
+  await page.locator("#companyName").fill("Design & Build + Partners");
+  await page.locator("#businessEmail").fill("info+enquiry@skylark-sa.com");
   await page.locator("#phone").fill("invalid-phone");
   await page.locator("#service").selectOption("Cabin Interiors");
   await page
@@ -124,6 +126,12 @@ test("WhatsApp validates consent and phone, encodes details, and handles blocked
   const url = new URL(href);
   expect(url.origin + url.pathname).toBe("https://wa.me/917054929356");
   expect(url.searchParams.get("text")).toContain("Solution: Cabin Interiors");
+  expect(url.searchParams.get("text")).toContain(
+    "Company: Design & Build + Partners",
+  );
+  expect(url.searchParams.get("text")).toContain(
+    "Business email: info+enquiry@skylark-sa.com",
+  );
   expect(url.searchParams.get("text")).toContain(
     "symbols & + and a new line\nSecond line.",
   );
@@ -195,7 +203,13 @@ test("every deployed design-inspiration photo has a source and licence credit", 
   const images = await page
     .locator("main img")
     .evaluateAll((items) =>
-      [...new Set(items.map((image) => image.getAttribute("src")))].sort(),
+      [
+        ...new Set(
+          items
+            .map((image) => image.getAttribute("src"))
+            .filter((src) => src.endsWith(".webp")),
+        ),
+      ].sort(),
     );
   await page.goto("/credits.html");
   const articles = await page
@@ -204,9 +218,11 @@ test("every deployed design-inspiration photo has a source and licence credit", 
       items.map((article) => ({
         files: article.dataset.image.split(" "),
         hasSource: !!article.querySelector(
-          'a[href^="https://unsplash.com/photos/"]',
+          'a[href^="https://unsplash.com/photos/"], a[href^="https://stocksnap.io/photo/"], a[href^="https://www.flickr.com/photos/"]',
         ),
-        hasLicense: article.textContent.includes("Unsplash License"),
+        hasLicense: /Unsplash License|CC0 1.0 Public Domain Dedication/.test(
+          article.textContent,
+        ),
       })),
     );
   expect(
@@ -482,6 +498,7 @@ test("selected category content sits right of its image on desktop and stacks on
 });
 
 test("capture review screenshots", async ({ page }) => {
+  await expect(page.locator(".brand-intro")).toBeHidden();
   await page.setViewportSize({ width: 1366, height: 650 });
   await page.screenshot({ path: "artifacts/desktop.png", fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });

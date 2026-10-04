@@ -13,7 +13,9 @@ const files = new Set([
 ]);
 for (const page of pages) {
   const html = await readFile(resolve(root, page), "utf8");
-  for (const match of html.matchAll(/(?:src|href|poster)="([^"#]+)"/g)) {
+  for (const match of html.matchAll(
+    /(?:src|href|poster|data-product-image)="([^"#]+)"/g,
+  )) {
     const path = match[1];
     if (!/^(https?:|tel:|mailto:)/.test(path)) files.add(path);
   }

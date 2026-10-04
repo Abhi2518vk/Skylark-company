@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460" role="img" aria-labelledby="title description">
+  <title id="title">Saudi Arabia and India regional locator</title>
+  <desc id="description">An original schematic regional map with country-level markers for Saudi Arabia and India. It is not a street map or office-address map.</desc>
+  <rect width="800" height="460" fill="#edf3f7"/>
+  <path d="M0 85C106 40 180 44 274 92c69 35 109 73 166 104 90 49 186 25 360-59v238c-134 48-270 58-390 16-122-43-242-64-410-29Z" fill="#b6d3e7"/>
+  <path d="M78 105 175 72l90 39 3 91-67 50-109-33Z" fill="#dee7ec" stroke="#fff" stroke-width="3"/>
+  <path d="m482 135 98-19 84 59-5 106-70 70-94-35-40-92Z" fill="#dee7ec" stroke="#fff" stroke-width="3"/>
+  <path d="M285 129c46 4 96 17 140 39" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="7 9"/>
+  <path d="M316 311c42-40 92-74 145-99" fill="none" stroke="#126aa8" stroke-width="2" stroke-dasharray="6 8"/>
+  <g fill="#126aa8">
+    <circle cx="218" cy="158" r="19" fill-opacity=".16"/>
+    <circle cx="218" cy="158" r="8" stroke="#fff" stroke-width="3"/>
+    <circle cx="548" cy="226" r="19" fill-opacity=".16"/>
+    <circle cx="548" cy="226" r="8" stroke="#fff" stroke-width="3"/>
+  </g>
+  <g font-family="Arial, sans-serif" fill="#0a263c">
+    <text x="218" y="293" text-anchor="middle" font-size="15" letter-spacing="2">COMPANY LOCATION</text>
+    <text x="218" y="326" text-anchor="middle" font-size="27" font-weight="700">Saudi Arabia</text>
+    <text x="548" y="363" text-anchor="middle" font-size="15" letter-spacing="2">+91 CONTACT NUMBER</text>
+    <text x="548" y="396" text-anchor="middle" font-size="27" font-weight="700">India</text>
+  </g>
+  <text x="400" y="432" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#486173">Schematic country-level locator · not a street-address map</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700" role="img" aria-labelledby="t d">
+<title id="t">Elevator entrance architrave surround</title><desc id="d">Schematic elevation of a lift entrance with the jamb and header surround highlighted.</desc>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="0.35" y2="1">
+  <stop offset="0" stop-color="#FDFBF7"/><stop offset="0.55" stop-color="#F4F7FB"/><stop offset="1" stop-color="#E8F0F8"/>
+ </linearGradient>
+ <linearGradient id="met" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#A3B0BC"/><stop offset="0.18" stop-color="#E4EAF0"/><stop offset="0.42" stop-color="#C7D1DB"/>
+  <stop offset="0.68" stop-color="#E4EAF0"/><stop offset="1" stop-color="#A3B0BC"/>
+ </linearGradient>
+ <linearGradient id="metv" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#E4EAF0"/><stop offset="0.5" stop-color="#C7D1DB"/><stop offset="1" stop-color="#A3B0BC"/>
+ </linearGradient>
+ <linearGradient id="glass" x1="0" y1="0" x2="0.6" y2="1">
+  <stop offset="0" stop-color="#DCEAF4" stop-opacity="0.85"/><stop offset="0.5" stop-color="#EAF4FA" stop-opacity="0.55"/>
+  <stop offset="1" stop-color="#C9DEEE" stop-opacity="0.8"/>
+ </linearGradient>
+ <linearGradient id="hil" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#BFD9EE"/><stop offset="1" stop-color="#8FBCDE"/>
+ </linearGradient>
+ <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+  <line x1="0" y1="0" x2="0" y2="9" stroke="#1C6CA8" stroke-width="1.5" stroke-opacity="0.5"/>
+ </pattern>
+ <pattern id="hatchg" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+  <line x1="0" y1="0" x2="0" y2="7" stroke="#9AA7B4" stroke-width="1.2" stroke-opacity="0.55"/>
+ </pattern>
+ <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+  <path d="M30 0H0V30" fill="none" stroke="#C9D8E6" stroke-width="0.8" stroke-opacity="0.55"/>
+ </pattern>
+</defs>
+<rect width="900" height="700" fill="url(#bg)"/>
+<rect width="900" height="700" fill="url(#grid)"/>
+<rect x="18" y="18" width="864" height="664" fill="none" stroke="#1C6CA8" stroke-width="1.2" stroke-opacity="0.35" rx="6"/>
+<g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<text x="36" y="56" font-size="22" font-weight="600" fill="#13293D" letter-spacing="0.5">Entrance Architraves</text><text x="36" y="78" font-size="13.5" fill="#2B3A48" fill-opacity="0.75">Elevation: jamb and header surround around a two-leaf landing entrance</text><line x1="36" y1="92" x2="300" y2="92" stroke="#1C6CA8" stroke-width="2.5"/><rect x="60" y="110" width="520" height="470" fill="#EEF2F6" stroke="#13293D" stroke-width="1.6"/><line x1="60" y1="227" x2="580" y2="227" stroke="#9AA7B4" stroke-width="0.8" stroke-opacity="0.6"/><line x1="60" y1="344" x2="580" y2="344" stroke="#9AA7B4" stroke-width="0.8" stroke-opacity="0.6"/><line x1="60" y1="461" x2="580" y2="461" stroke="#9AA7B4" stroke-width="0.8" stroke-opacity="0.6"/><rect x="60" y="110" width="520" height="470" fill="url(#hatchg)" fill-opacity="0.25"/><rect x="150" y="170" width="340" height="410" fill="url(#hil)" stroke="#1C6CA8" stroke-width="2.4"/><rect x="150" y="170" width="340" height="410" fill="url(#hatch)" fill-opacity="0.55"/><rect x="182" y="202" width="276" height="378" fill="#F7FAFC" stroke="#1C6CA8" stroke-width="2"/><rect x="182" y="202" width="138" height="378" fill="url(#met)" stroke="#13293D" stroke-width="1.4"/><rect x="320" y="202" width="138" height="378" fill="url(#met)" stroke="#13293D" stroke-width="1.4"/><line x1="320" y1="202" x2="320" y2="580" stroke="#13293D" stroke-width="2.2"/><line x1="230" y1="212" x2="230" y2="570" stroke="#FFFFFF" stroke-width="1.6" stroke-opacity="0.7"/><line x1="270" y1="212" x2="270" y2="570" stroke="#FFFFFF" stroke-width="1.6" stroke-opacity="0.7"/><line x1="370" y1="212" x2="370" y2="570" stroke="#FFFFFF" stroke-width="1.6" stroke-opacity="0.7"/><line x1="410" y1="212" x2="410" y2="570" stroke="#FFFFFF" stroke-width="1.6" stroke-opacity="0.7"/><line x1="150" y1="202" x2="490" y2="202" stroke="#1C6CA8" stroke-width="1.6" stroke-dasharray="6 4"/><path d="M150 170L182 202M490 170L458 202" stroke="#13293D" stroke-width="1.5"/><path d="M150 240L96 268" stroke="#1C6CA8" stroke-width="1.1" fill="none" stroke-dasharray="4 3"/><circle cx="150" cy="240" r="3.4" fill="#1C6CA8"/><text x="66" y="288" font-size="12.5" fill="#2B3A48" fill-opacity="0.85" text-anchor="start">Side jamb</text><path d="M320 186L392 142" stroke="#1C6CA8" stroke-width="1.1" fill="none" stroke-dasharray="4 3"/><circle cx="320" cy="186" r="3.4" fill="#1C6CA8"/><text x="398" y="138" font-size="12.5" fill="#2B3A48" fill-opacity="0.85" text-anchor="start">Header / transom face</text><path d="M458 470L536 505" stroke="#1C6CA8" stroke-width="1.1" fill="none" stroke-dasharray="4 3"/><circle cx="458" cy="470" r="3.4" fill="#1C6CA8"/><text x="500" y="526" font-size="12.5" fill="#2B3A48" fill-opacity="0.85" text-anchor="start">Return to wall line</text><rect x="610" y="150" width="252" height="190" rx="6" fill="#FFFFFF" fill-opacity="0.78" stroke="#1C6CA8" stroke-opacity="0.55" stroke-width="1.2"/><text x="622" y="170" font-size="11.5" letter-spacing="1.3" fill="#1C6CA8">PLAN DETAIL - JAMB RETURN</text><rect x="632" y="186" width="208" height="46" fill="url(#hatchg)" stroke="#13293D" stroke-width="1.3"/><path d="M632 232h60v26h-60z" fill="url(#hil)" stroke="#1C6CA8" stroke-width="1.8"/><path d="M780 232h60v26h-60z" fill="url(#hil)" stroke="#1C6CA8" stroke-width="1.8"/><line x1="692" y1="258" x2="780" y2="258" stroke="#13293D" stroke-width="1.6" stroke-dasharray="5 4"/><text x="634" y="292" font-size="12.5" fill="#2B3A48" fill-opacity="0.85" text-anchor="start">Surround wraps the structural</text><text x="634" y="310" font-size="12.5" fill="#2B3A48" fill-opacity="0.85" text-anchor="start">opening and closes the wall joint.</text><rect x="610" y="362" width="252" height="180" rx="6" fill="#FFFFFF" fill-opacity="0.78" stroke="#1C6CA8" stroke-opacity="0.55" stroke-width="1.2"/><text x="622" y="382" font-size="11.5" letter-spacing="1.3" fill="#1C6CA8">SECTION - PROFILE SHAPES</text><g transform="translate(634,404)"><path d="M0 0h54v14h-16v30h-38z" fill="url(#metv)" stroke="#13293D" stroke-width="1.4"/></g><g transform="translate(706,404)"><path d="M0 0h54v14h-40v30h-14z" fill="url(#metv)" stroke="#13293D" stroke-width="1.4"/></g><g transform="translate(778,404)"><path d="M0 0h54v44h-18v-30h-36z" fill="url(#metv)" stroke="#13293D" stroke-width="1.4"/></g><text x="634" y="494" font-size="12.5" fill="#2B3A48" fill-opacity="0.85" text-anchor="start">Flat, stepped and L-return faces.</text><rect x="610" y="560" width="236" height="66" rx="6" fill="#FFFFFF" fill-opacity="0.72" stroke="#9AA7B4" stroke-opacity="0.5"/><text x="624" y="582" font-size="11.5" letter-spacing="1.6" fill="#9AA7B4">KEY</text><rect x="624" y="589" width="16" height="12" rx="2" fill="url(#hil)" stroke="#13293D" stroke-width="0.9"/><text x="648" y="599" font-size="12" fill="#2B3A48">Architrave surround</text><rect x="624" y="611" width="16" height="12" rx="2" fill="url(#met)" stroke="#13293D" stroke-width="0.9"/><text x="648" y="621" font-size="12" fill="#2B3A48">Door leaves / metalwork</text><text x="36" y="666" font-size="13" letter-spacing="2.4" fill="#1C6CA8" fill-opacity="0.85">CONCEPT ILLUSTRATION</text>
+<text x="864" y="666" font-size="13" letter-spacing="1.4" text-anchor="end" fill="#9AA7B4">SKYLARK / ARCHITRAVES</text>
+<line x1="36" y1="650" x2="864" y2="650" stroke="#9AA7B4" stroke-width="0.9" stroke-opacity="0.5"/>
+</g></svg>
