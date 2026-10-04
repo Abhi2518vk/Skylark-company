@@ -123,6 +123,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Parallax Effect on Scroll for Banner Elements
+  const parallaxBoxes = document.querySelectorAll('.parallax-box');
+  let ticking = false;
+
+  function updateParallax() {
+    const windowHeight = window.innerHeight;
+    parallaxBoxes.forEach(box => {
+      const rect = box.getBoundingClientRect();
+      if (rect.top < windowHeight && rect.bottom > 0) {
+        const speed = 0.08;
+        const yOffset = (rect.top - windowHeight / 2) * speed;
+        const img = box.querySelector('img');
+        if (img) {
+          img.style.transform = `scale(1.06) translateY(${yOffset}px)`;
+        }
+      }
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  });
+
   // Scroll Reveal Animations
   const reveals = document.querySelectorAll('.reveal');
 
@@ -154,6 +181,97 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('scroll', handleScrollReveal);
     handleScrollReveal();
+  }
+
+  // Interactive Lightbox Gallery
+  const lightboxModal = document.getElementById('lightboxModal');
+  const lightboxImg = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+
+  const galleryImages = Array.from(document.querySelectorAll('img[data-lightbox="gallery"]'));
+  let activeIndex = 0;
+
+  function openLightbox(index) {
+    if (!lightboxModal || galleryImages.length === 0) return;
+    activeIndex = index;
+    const targetImg = galleryImages[activeIndex];
+    lightboxImg.src = targetImg.src;
+    lightboxImg.alt = targetImg.alt || '';
+    lightboxCaption.textContent = targetImg.getAttribute('data-caption') || targetImg.alt || '';
+    lightboxModal.classList.add('active');
+    lightboxModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!lightboxModal) return;
+    lightboxModal.classList.remove('active');
+    lightboxModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function prevLightboxImage() {
+    activeIndex = (activeIndex - 1 + galleryImages.length) % galleryImages.length;
+    openLightbox(activeIndex);
+  }
+
+  function nextLightboxImage() {
+    activeIndex = (activeIndex + 1) % galleryImages.length;
+    openLightbox(activeIndex);
+  }
+
+  galleryImages.forEach((img, index) => {
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLightbox(index);
+    });
+  });
+
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevLightboxImage(); });
+  if (lightboxNext) lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextLightboxImage(); });
+
+  if (lightboxModal) {
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal || e.target.classList.contains('lightbox-content')) {
+        closeLightbox();
+      }
+    });
+  }
+
+  // Keyboard navigation for Lightbox
+  document.addEventListener('keydown', (e) => {
+    if (!lightboxModal || !lightboxModal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevLightboxImage();
+    if (e.key === 'ArrowRight') nextLightboxImage();
+  });
+
+  // Touch Swipe Support for Lightbox
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (lightboxModal) {
+    lightboxModal.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightboxModal.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+  }
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) {
+      nextLightboxImage();
+    } else if (touchEndX > touchStartX + swipeThreshold) {
+      prevLightboxImage();
+    }
   }
 
   // WhatsApp Contact Form Integration
