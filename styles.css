@@ -1951,43 +1951,44 @@ dialog::backdrop {
 }
 
 :root {
-  --page-width: 1160px;
+  --page-width: 1120px;
 }
 .container {
   width: min(var(--page-width), calc(100% - 64px));
 }
 .header-inner {
-  height: 84px;
+  height: 78px;
+  gap: 28px;
 }
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
+  gap: 10px;
   margin-right: auto;
   flex-shrink: 0;
   color: var(--navy);
 }
 .brand img {
-  width: 51px;
-  height: 58px;
+  width: 44px;
+  height: 50px;
   object-fit: contain;
 }
 .brand-wordmark {
-  font-size: 25px;
+  font-size: 23px;
   font-weight: 750;
-  letter-spacing: 1.7px;
+  letter-spacing: 1.5px;
   line-height: 1;
 }
 .brand-wordmark small {
   display: block;
   margin-top: 7px;
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 700;
-  letter-spacing: 1.45px;
+  letter-spacing: 1.3px;
 }
 .hero {
-  height: min(740px, calc(100svh - 84px));
-  min-height: 610px;
+  height: min(600px, calc(100svh - 79px));
+  min-height: 460px;
 }
 .hero-image {
   width: 57%;
@@ -2006,24 +2007,133 @@ dialog::backdrop {
       90deg,
       #0a263c 0%,
       rgb(10 38 60 / 98%) 38%,
-      rgb(10 38 60 / 24%) 75%
+      rgb(10 38 60 / 20%) 75%
     ),
     linear-gradient(0deg, rgb(5 23 37 / 90%) 0%, transparent 40%);
 }
 .hero-content {
-  top: 48%;
+  top: 46%;
 }
 .hero h1,
 .hero h2 {
-  font-size: clamp(60px, 5.6vw, 84px);
-  letter-spacing: -3.5px;
+  font-size: clamp(52px, 4.8vw, 68px);
+  letter-spacing: -2.5px;
 }
-@media (min-width: 1700px) {
-  :root {
-    --page-width: 1200px;
+.hero .eyebrow {
+  margin-bottom: 18px;
+}
+.hero-copy {
+  max-width: 410px;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 20px;
+}
+.hero-actions {
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 22px;
+}
+.hero-actions .button {
+  padding: 15px 20px;
+  font-size: 12px;
+  gap: 20px;
+}
+.hero-bottom {
+  bottom: 18px;
+}
+.section {
+  padding-block: 80px;
+}
+.company-visual {
+  min-height: 0;
+  height: 420px;
+}
+.catalog-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+.detail-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.detail-gallery figure {
+  margin: 0;
+}
+.detail-gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.detail-gallery figcaption {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+}
+.product-list li {
+  border-top: 1px solid var(--line);
+}
+.product-list button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  background: none;
+  padding: 10px 0;
+  font-size: 13px;
+}
+.product-list button:hover {
+  color: var(--blue);
+}
+.film-section {
+  min-height: 440px;
+}
+.film-content {
+  padding-block: 64px 90px;
+}
+.film-content h2 {
+  font-size: clamp(32px, 3.4vw, 46px);
+}
+.film-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.film-play-icon {
+  width: 64px;
+  height: 64px;
+  font-size: 16px;
+}
+@media (min-width: 851px) and (max-width: 1100px) {
+  .container {
+    width: calc(100% - 72px);
   }
-  .hero {
-    height: 780px;
+  .hero h1,
+  .hero h2 {
+    font-size: 58px;
+  }
+  .header-inner {
+    gap: 20px;
+  }
+  .navigation {
+    gap: 18px;
+  }
+  .brand-wordmark {
+    font-size: 20px;
+  }
+  .hero-motto {
+    display: none;
   }
 }
 @media (max-width: 850px) {
@@ -2035,6 +2145,7 @@ dialog::backdrop {
   }
   .header-inner {
     height: 74px;
+    gap: 12px;
   }
   .brand {
     gap: 8px;
@@ -2056,44 +2167,104 @@ dialog::backdrop {
     top: 74px;
   }
   .hero {
-    min-height: 670px;
-    height: calc(100svh - 74px);
-    max-height: 760px;
+    min-height: 600px;
+    height: min(640px, calc(100svh - 75px));
+    max-height: none;
   }
   .hero-image {
     width: 100%;
-    height: 44%;
-    object-position: center;
+    height: 38%;
   }
   .hero-shade {
-    background: linear-gradient(0deg, #0a263c 0%, #0a263c 53%, transparent 71%);
+    background: linear-gradient(0deg, #0a263c 0%, #0a263c 59%, transparent 78%);
   }
   .hero-content {
     top: auto;
-    bottom: 100px;
+    bottom: 84px;
     transform: none;
   }
   .hero h1,
   .hero h2 {
-    font-size: clamp(48px, 11vw, 66px);
-    letter-spacing: -2.5px;
+    font-size: clamp(42px, 10vw, 56px);
+    letter-spacing: -2px;
   }
   .hero .eyebrow {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 1px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
   .hero-copy {
-    margin-top: 16px;
+    margin-top: 14px;
+    font-size: 13px;
     line-height: 1.65;
   }
   .hero-actions {
-    gap: 7px;
+    gap: 12px;
     margin-top: 18px;
   }
+  .hero-actions .button {
+    padding: 13px 17px;
+  }
   .company-visual {
-    height: 360px;
-    min-height: 0;
+    height: 340px;
     margin: 0;
+  }
+  .section {
+    padding-block: 56px;
+  }
+  .products-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .hero-bottom .scroll-cue {
+    display: none;
+  }
+  .hero-bottom {
+    justify-content: center;
+  }
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  .catalog-image {
+    height: 220px;
+  }
+  .detail-gallery {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .detail-gallery img {
+    height: 180px;
+  }
+  .film-controls {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  .film-play {
+    min-width: 0;
+    gap: 10px;
+  }
+  .film-play-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+  .film-content {
+    padding-block: 48px 100px;
+  }
+  .film-bottom {
+    font-size: 8px;
+  }
+  .filters {
+    gap: 12px;
+  }
+}
+@media (max-width: 360px) {
+  .header-cta {
+    display: none;
+  }
+  .menu-toggle {
+    margin-left: auto;
   }
 }

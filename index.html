@@ -75,7 +75,7 @@
           <article
             class="hero-slide is-active"
             data-slide="0"
-            aria-label="1 of 3: Elevator aesthetics"
+            aria-label="1 of 4: Elevator aesthetics"
             aria-roledescription="slide"
           >
             <img
@@ -93,8 +93,8 @@
               </p>
               <h1>Crafted to<br /><em>elevate.</em></h1>
               <p class="hero-copy">
-                Elevator interiors and architectural metalwork, designed around
-                the spaces that move us.
+                Cabin interiors, door cladding and architectural metalwork, from
+                design to installation.
               </p>
               <div class="hero-actions">
                 <a class="button" href="#products"
@@ -110,7 +110,7 @@
           <article
             class="hero-slide"
             data-slide="1"
-            aria-label="2 of 3: Escalator aesthetics"
+            aria-label="2 of 4: Escalator aesthetics"
             aria-roledescription="slide"
             aria-hidden="true"
             inert
@@ -145,7 +145,7 @@
           <article
             class="hero-slide"
             data-slide="2"
-            aria-label="3 of 3: Cabin interiors"
+            aria-label="3 of 4: Cabin interiors"
             aria-roledescription="slide"
             aria-hidden="true"
             inert
@@ -155,7 +155,7 @@
               src="images/cabin.webp"
               width="1600"
               height="1067"
-              alt="Elevator cabin control detail with brass-toned buttons and Braille"
+              alt="Contemporary elevator cabin interior with coordinated wall finishes"
               loading="lazy"
             />
             <div class="hero-shade"></div>
@@ -165,8 +165,8 @@
               </p>
               <h2>Every detail.<br /><em>Elevated.</em></h2>
               <p class="hero-copy">
-                Cabin interiors and bespoke finishes, developed around your
-                brief and equipment.
+                Wall panels, ceilings, handrails and flooring, coordinated for
+                your cabin.
               </p>
               <div class="hero-actions">
                 <a class="button" href="#services"
@@ -177,6 +177,41 @@
               </div>
             </div>
             <div class="image-note">03 / BESPOKE INTERIORS</div>
+          </article>
+          <article
+            class="hero-slide"
+            data-slide="3"
+            aria-label="4 of 4: Glass and metal"
+            aria-roledescription="slide"
+            aria-hidden="true"
+            inert
+          >
+            <img
+              class="hero-image"
+              src="images/glass-lift.webp"
+              width="1600"
+              height="1065"
+              alt="Glass elevator framed by a contemporary steel structure"
+              loading="lazy"
+            />
+            <div class="hero-shade"></div>
+            <div class="container hero-content">
+              <p class="eyebrow light"><span></span> Glass &amp; metal</p>
+              <h2>Light. Form.<br /><em>Precision.</em></h2>
+              <p class="hero-copy">
+                Glass doors and bespoke metal details that bring your design
+                together.
+              </p>
+              <div class="hero-actions">
+                <a class="button" href="#products" data-filter-link="elevators"
+                  >Explore elevator solutions
+                  <span aria-hidden="true">↗</span></a
+                ><a class="text-link light-link" href="#contact"
+                  >Discuss your project <span aria-hidden="true">↗</span></a
+                >
+              </div>
+            </div>
+            <div class="image-note">04 / GLASS &amp; METAL</div>
           </article>
         </div>
         <div class="hero-bottom container">
@@ -217,6 +252,15 @@
             </button>
             <button
               type="button"
+              class="slide-dot"
+              data-go-slide="3"
+              aria-label="Show glass and metal"
+              aria-pressed="false"
+            >
+              <span>04</span><i></i>
+            </button>
+            <button
+              type="button"
               id="slidePause"
               class="pause-button"
               aria-label="Pause slideshow"
@@ -232,10 +276,10 @@
         <div class="container company-grid">
           <div class="company-visual reveal">
             <img
-              src="images/glass-lift.webp"
-              width="1600"
-              height="1065"
-              alt="Glass elevator in a contemporary steel and glass building"
+              src="images/lift-detail.webp"
+              width="1200"
+              height="1781"
+              alt="Minimalist elevator entrance with stone walls and illuminated metal trim"
               loading="lazy"
             />
           </div>
@@ -245,12 +289,10 @@
               Design in every<br /><span class="muted-heading">detail.</span>
             </h2>
             <p class="lead">
-              Skylark Elevators &amp; Fabrication is a new, design-led studio
-              for elevator and escalator aesthetics — cabin interiors, door
-              cladding, escalator panelling and bespoke metalwork. We align
-              design intent with equipment technicalities: fixings, clearances
-              and finishes. International enquiries welcome; scope confirmed per
-              project.
+              Skylark Elevators &amp; Fabrication focuses on elevator and
+              escalator aesthetics. We develop cabin interiors, door cladding,
+              escalator panels and custom metalwork around your design,
+              equipment and site requirements.
             </p>
             <a class="text-link" href="#contact"
               >Let’s build something considered
@@ -261,16 +303,20 @@
       </section>
       <section id="products" class="section products-section">
         <div class="container">
-          <div class="section-heading reveal">
+          <div class="section-heading">
             <div>
-              <p class="eyebrow">02 / OUR COLLECTION</p>
+              <p class="eyebrow">02 / OUR PRODUCTS</p>
               <h2>
-                Made for movement.<br /><span class="muted-heading"
-                  >Designed to stand apart.</span
+                Elevators.<br /><span class="muted-heading"
+                  >Escalators. Every detail.</span
                 >
               </h2>
             </div>
-            <p>Interiors, cladding and metalwork for vertical spaces.</p>
+            <p>
+              Interiors and cladding shaped around your design. Materials,
+              fixings and installation details are reviewed against the
+              equipment and applicable project safety requirements.
+            </p>
           </div>
           <div class="collection-bar">
             <div class="filters" role="group" aria-label="Filter products">
@@ -280,7 +326,7 @@
                 data-filter="all"
                 aria-pressed="true"
               >
-                All solutions <span>06</span></button
+                All products</button
               ><button
                 type="button"
                 class="filter"
@@ -308,201 +354,162 @@
               class="collection-caption"
               id="productCount"
               aria-live="polite"
-              >6 considered solutions</span
+              >11 products</span
             >
           </div>
           <div class="products-grid">
             <article class="product-card" data-category="elevators">
-              <button
-                type="button"
-                class="product-image"
-                data-product="cabins"
-                aria-label="View cabin interiors details"
-              >
-                <img
-                  src="images/cabin.webp"
-                  width="1600"
-                  height="1067"
-                  alt="Elevator cabin control detail inspiration"
-                  loading="lazy"
-                /><span class="product-number">01 / ELEVATORS</span
-                ><span class="round-arrow" aria-hidden="true">↗</span>
-              </button>
+              <img
+                class="catalog-image"
+                src="images/cabin.webp"
+                width="1600"
+                height="1067"
+                alt="Contemporary elevator cabin interior"
+                loading="lazy"
+              />
               <div class="product-info">
-                <h3>
-                  <button type="button" data-product="cabins">
-                    Cabin interiors
-                  </button>
-                </h3>
-                <p>A complete interior. A cohesive impression.</p>
-                <div class="tags">
-                  <span>Wall panels</span><span>Mirrors</span
-                  ><span>Glass cabins</span>
-                </div>
-              </div>
-            </article>
-            <article class="product-card" data-category="elevators">
-              <button
-                type="button"
-                class="product-image"
-                data-product="doors"
-                aria-label="View architraves and door cladding details"
-              >
-                <img
-                  src="images/entrance.webp"
-                  width="1600"
-                  height="1200"
-                  alt="Elevator entrances with metal door frames"
-                  loading="lazy"
-                /><span class="product-number">02 / ELEVATORS</span
-                ><span class="round-arrow" aria-hidden="true">↗</span>
-              </button>
-              <div class="product-info">
-                <h3>
-                  <button type="button" data-product="doors">
-                    Architraves &amp; door cladding
-                  </button>
-                </h3>
-                <p>An entrance that sets the tone.</p>
-                <div class="tags">
-                  <span>Door skins</span><span>Jambs</span
-                  ><span>Glass doors</span>
-                </div>
+                <h3>Elevators</h3>
+                <ul class="product-list">
+                  <li>
+                    <button type="button" data-product="cabins">
+                      Cabin Interiors<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" data-product="architraves">
+                      Architraves<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" data-product="handrail">
+                      Handrail<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" data-product="ceiling">
+                      Ceiling<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" data-product="doors">
+                      Door Cladding<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" data-product="glass">
+                      Glass Doors<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" data-product="flooring">
+                      Cabin Flooring<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                </ul>
               </div>
             </article>
             <article class="product-card" data-category="escalators">
-              <button
-                type="button"
-                class="product-image"
-                data-product="escalators"
-                aria-label="View escalator cladding details"
-              >
-                <img
-                  src="images/escalator-design.webp"
-                  width="1600"
-                  height="1067"
-                  alt="Escalator cladding and glass balustrade inspiration"
-                  loading="lazy"
-                /><span class="product-number">03 / ESCALATORS</span
-                ><span class="round-arrow" aria-hidden="true">↗</span>
-              </button>
+              <img
+                class="catalog-image"
+                src="images/escalator-design.webp"
+                width="1600"
+                height="1067"
+                alt="Escalators with coordinated architectural cladding"
+                loading="lazy"
+              />
               <div class="product-info">
-                <h3>
-                  <button type="button" data-product="escalators">
-                    Escalator cladding
-                  </button>
-                </h3>
-                <p>Seamless lines, from one level to the next.</p>
-                <div class="tags">
-                  <span>Side panels</span><span>Soffits</span
-                  ><span>Finishes</span>
-                </div>
-              </div>
-            </article>
-            <article class="product-card" data-category="elevators">
-              <button
-                type="button"
-                class="product-image detail-crop"
-                data-product="finishes"
-                aria-label="View ceilings handrails and flooring details"
-              >
-                <img
-                  src="images/finishes.webp"
-                  width="1200"
-                  height="1200"
-                  alt="Architectural steel and glass finish inspiration"
-                  loading="lazy"
-                /><span class="product-number">04 / ELEVATORS</span
-                ><span class="round-arrow" aria-hidden="true">↗</span>
-              </button>
-              <div class="product-info">
-                <h3>
-                  <button type="button" data-product="finishes">
-                    Ceilings, handrails &amp; flooring
-                  </button>
-                </h3>
-                <p>The finishing touches that bring it together.</p>
-                <div class="tags">
-                  <span>Lighting</span><span>Handrails</span
-                  ><span>Floor finishes</span>
-                </div>
-              </div>
-            </article>
-            <article class="product-card" data-category="escalators">
-              <button
-                type="button"
-                class="product-image"
-                data-product="guards"
-                aria-label="View guards and bollards details"
-              >
-                <img
-                  src="images/guards.webp"
-                  width="1200"
-                  height="1200"
-                  alt="Stainless-steel bollards in a modern shared space"
-                  loading="lazy"
-                /><span class="product-number">05 / ESCALATORS</span
-                ><span class="round-arrow" aria-hidden="true">↗</span>
-              </button>
-              <div class="product-info">
-                <h3>
-                  <button type="button" data-product="guards">
-                    Guards &amp; floor bollards
-                  </button>
-                </h3>
-                <p>Thoughtful details for shared spaces.</p>
-                <div class="tags">
-                  <span>Glass guards</span><span>Bollards</span
-                  ><span>Site detailing</span>
-                </div>
+                <h3>Escalators</h3>
+                <ul class="product-list">
+                  <li>
+                    <button type="button" data-product="escalators">
+                      Escalator Cladding<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" data-product="bollards">
+                      Escalator Floor Bollards<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" data-product="guards">
+                      Child Safety Guards<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                </ul>
               </div>
             </article>
             <article class="product-card" data-category="fabrication">
-              <button
-                type="button"
-                class="product-image"
-                data-product="metalwork"
-                aria-label="View bespoke metalwork details"
-              >
-                <img
-                  src="images/metalwork.webp"
-                  width="1200"
-                  height="1200"
-                  alt="Brushed stainless-steel architectural metalwork"
-                  loading="lazy"
-                /><span class="product-number">06 / FABRICATION</span
-                ><span class="round-arrow" aria-hidden="true">↗</span>
-              </button>
+              <img
+                class="catalog-image"
+                src="images/metalwork.webp"
+                width="1600"
+                height="1067"
+                alt="Brushed stainless steel surface"
+                loading="lazy"
+              />
               <div class="product-info">
-                <h3>
-                  <button type="button" data-product="metalwork">
-                    Bespoke metalwork
-                  </button>
-                </h3>
-                <p>Metal details made for your space.</p>
-                <div class="tags">
-                  <span>Stainless steel</span><span>Forming</span
-                  ><span>Custom details</span>
-                </div>
+                <h3>Bespoke Metalwork</h3>
+                <ul class="product-list">
+                  <li>
+                    <button type="button" data-product="metalwork">
+                      Bespoke Metalwork<span aria-hidden="true">↗</span>
+                    </button>
+                  </li>
+                </ul>
               </div>
             </article>
           </div>
+          <div class="detail-gallery">
+            <figure>
+              <img
+                src="images/lift-detail.webp"
+                width="1200"
+                height="1781"
+                alt="Illuminated metal architrave around a modern lift entrance"
+                loading="lazy"
+              />
+              <figcaption>Architraves &amp; door cladding</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="images/guards.webp"
+                width="1200"
+                height="1200"
+                alt="Stainless steel bollards in a paved pedestrian space"
+                loading="lazy"
+              />
+              <figcaption>Floor bollards &amp; site details</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="images/finishes.webp"
+                width="1200"
+                height="1200"
+                alt="Glass and steel architectural detail"
+                loading="lazy"
+              />
+              <figcaption>Glass &amp; metal finishes</figcaption>
+            </figure>
+          </div>
           <p class="image-disclaimer">
-            Design inspiration, not completed Skylark projects. We focus on
-            aesthetics and fabrication, not complete lift systems. Scope is
-            agreed per enquiry.
+            Design inspiration, not completed Skylark projects. Aesthetics and
+            fabrication, not complete lift systems. Scope confirmed per enquiry.
           </p>
         </div>
       </section>
       <section id="film" class="film-section" aria-labelledby="filmTitle">
-        <img
+        <video
+          id="filmPreview"
           class="film-poster"
-          src="images/glass-lift.webp"
-          width="1600"
-          height="1065"
-          alt="Glass elevator and structural steel in a contemporary building"
-          loading="lazy"
-        />
+          muted
+          loop
+          playsinline
+          preload="none"
+          poster="images/escalator-design.webp"
+        >
+          <source src="images/skylark-motion.webm" type="video/webm" />
+          <source src="images/skylark-motion.mp4" type="video/mp4" />
+        </video>
         <div class="film-shade"></div>
         <div class="container film-content">
           <div>
@@ -510,14 +517,22 @@
             <h2 id="filmTitle">
               Architecture moves us.<br /><em>Details stay with us.</em>
             </h2>
-            <p>Take a closer look at the spaces between destinations.</p>
+            <p>Materials, movement and the details in between.</p>
           </div>
-          <button type="button" class="film-play" id="openFilm">
-            <span class="film-play-icon" aria-hidden="true">▶</span
-            ><span
-              >PLAY THE VISUAL STORY <small>DESIGN INSPIRATION</small></span
+          <div class="film-controls">
+            <button
+              type="button"
+              id="previewToggle"
+              class="button button-small"
+              aria-controls="filmPreview"
             >
-          </button>
+              Play preview
+            </button>
+            <button type="button" class="film-play" id="openFilm">
+              <span class="film-play-icon" aria-hidden="true">▶</span
+              ><span>OPEN FULL FILM <small>DESIGN INSPIRATION</small></span>
+            </button>
+          </div>
         </div>
         <div class="film-bottom container">
           <span>SKYLARK / MOVEMENT &amp; MATERIAL</span
@@ -661,12 +676,17 @@
               <label for="service">I’m interested in <span>*</span></label
               ><select id="service" name="service" required>
                 <option value="">Select a solution</option>
-                <option>Cabin interiors</option>
-                <option>Architraves &amp; door cladding</option>
-                <option>Escalator cladding</option>
-                <option>Ceilings, handrails &amp; flooring</option>
-                <option>Guards &amp; floor bollards</option>
-                <option>Bespoke metalwork</option>
+                <option>Cabin Interiors</option>
+                <option>Architraves</option>
+                <option>Handrail</option>
+                <option>Ceiling</option>
+                <option>Door Cladding</option>
+                <option>Glass Doors</option>
+                <option>Cabin Flooring</option>
+                <option>Escalator Cladding</option>
+                <option>Escalator Floor Bollards</option>
+                <option>Child Safety Guards</option>
+                <option>Bespoke Metalwork</option>
                 <option>Design &amp; installation</option>
                 <option>General enquiry</option>
               </select>

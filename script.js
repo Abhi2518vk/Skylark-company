@@ -151,7 +151,7 @@ function filterProducts(category) {
   let count = 0;
   document.querySelectorAll(".product-card").forEach((card) => {
     card.hidden = category !== "all" && card.dataset.category !== category;
-    if (!card.hidden) count += 1;
+    if (!card.hidden) count += card.querySelectorAll("[data-product]").length;
   });
   document.querySelectorAll("[data-filter]").forEach((button) => {
     const active = button.dataset.filter === category;
@@ -159,62 +159,107 @@ function filterProducts(category) {
     button.setAttribute("aria-pressed", String(active));
   });
   document.querySelector("#productCount").textContent =
-    `${count} considered solution${count === 1 ? "" : "s"}`;
+    `${count} product${count === 1 ? "" : "s"}`;
 }
 
 const productDetails = {
   cabins: {
     description:
-      "A coordinated approach to the entire cabin, from wall panels and mirrors to the ceiling above. Develop an interior that feels like a natural continuation of the building.",
+      "Wall panels, mirrors and finishes developed as one coordinated cabin interior.",
     features: [
-      "Decorative stainless steel, mirror and veneer options",
-      "Glass cabin concepts and coordinated panel layouts",
-      "Material weight, fixing and clearance review",
+      "Stainless steel, glass and veneer options",
+      "Panel layouts and fixing details",
+      "Equipment load and clearance review",
+    ],
+  },
+  architraves: {
+    description:
+      "Entrance frames and architraves coordinated with the lift opening and surrounding finishes.",
+    features: [
+      "Custom jamb and header profiles",
+      "Material and finish selection",
+      "Site dimensions and fixing details",
+    ],
+  },
+  handrail: {
+    description:
+      "Handrails that complement the cabin interior and its daily use.",
+    features: [
+      "Stainless steel profiles and finishes",
+      "Position and dimension coordination",
+      "Equipment-specific fixing review",
+    ],
+  },
+  ceiling: {
+    description:
+      "Ceiling panels and lighting layouts coordinated with the cabin design.",
+    features: [
+      "Decorative ceiling layouts",
+      "LED lighting integration",
+      "Access, ventilation and weight review",
     ],
   },
   doors: {
     description:
-      "Bring a distinct identity to every arrival. Custom door skins, entrance frames and architraves connect the elevator with the surrounding architectural finishes.",
+      "Door cladding that connects the elevator entrance to the building interior.",
     features: [
-      "Hairline, mirror and decorative metal finishes",
-      "Custom jambs, headers and entrance detailing",
-      "Door movement and fixation coordination",
+      "Brushed, mirror and decorative finishes",
+      "Panel sizing and joint details",
+      "Door movement and clearance review",
+    ],
+  },
+  glass: {
+    description:
+      "Glass door concepts developed around the selected equipment and entrance design.",
+    features: [
+      "Glass and frame finish selection",
+      "Dimensions and hardware coordination",
+      "Equipment compatibility and safety review",
+    ],
+  },
+  flooring: {
+    description:
+      "Cabin flooring selected for appearance, durability and equipment suitability.",
+    features: [
+      "Stone, marble and resilient finish options",
+      "Threshold and floor build-up details",
+      "Weight and load review",
     ],
   },
   escalators: {
     description:
-      "Create a consistent visual language around escalators with coordinated side panels, soffits and underside cladding. Each detail responds to the surrounding interior.",
+      "Side panels, soffits and underside cladding coordinated with the surrounding architecture.",
     features: [
-      "Outer and under-escalator cladding concepts",
-      "Material and joint alignment development",
-      "Coordination with equipment access and maintenance needs",
+      "Stainless steel and decorative panel options",
+      "Panel joints and fixing details",
+      "Maintenance access coordination",
     ],
   },
-  finishes: {
+  bollards: {
     description:
-      "Bring the cabin together with considered lighting, tactile handrails and a floor finish that complements the interior. Small choices make a lasting impression.",
+      "Floor bollards developed around escalator approaches and the surrounding pedestrian space.",
     features: [
-      "Decorative ceiling and LED lighting concepts",
-      "Stainless steel handrail profiles and finishes",
-      "Stone, marble and resilient flooring options, subject to load review",
+      "Stainless steel profiles and finishes",
+      "Site-specific positioning",
+      "Floor fixing and dimension review",
     ],
   },
   guards: {
     description:
-      "Discuss glass guards and floor bollards as part of an integrated escalator setting. Layout, dimensions and fixings are developed for the site and reviewed against applicable requirements.",
+      "Child safety guard layouts coordinated with the escalator and adjacent building elements.",
     features: [
-      "Child-safety guard design coordination",
-      "Bollard positioning and architectural finishes",
-      "Site-specific dimensions and fixing details",
+      "Glass guard and support options",
+      "Site-specific dimensions and clearances",
+      "Review against applicable project requirements",
     ],
   },
   metalwork: {
     description:
-      "Translate architectural ideas into custom metal elements. From decorative panels to precision-formed components, we develop the details around your design brief.",
+      "Custom metal panels and architectural details developed from your brief.",
     features: [
-      "Custom stainless steel and decorative metal elements",
-      "Laser-cut patterns, formed panels and bespoke joinery",
-      "Drawing, material and finish coordination before fabrication",
+      "Stainless steel and decorative metal",
+      "Cutting, forming and joinery details",
+      "Drawing and finish coordination",
     ],
   },
 };
@@ -246,10 +291,7 @@ function initProducts() {
       const card = button.closest(".product-card");
       const detail = productDetails[button.dataset.product];
       const sourceImage = card.querySelector("img");
-      selectedTitle = card
-        .querySelector("h3")
-        .textContent.replace(/\s+/g, " ")
-        .trim();
+      selectedTitle = button.childNodes[0].textContent.trim();
       document.querySelector("#dialogTitle").textContent = selectedTitle;
       document.querySelector("#dialogCategory").textContent =
         `THE COLLECTION / ${card.dataset.category.toUpperCase()}`;
@@ -313,6 +355,68 @@ function initDialogs() {
   });
 }
 
+function initFilmPreview() {
+  const film = document.querySelector("#filmPreview");
+  const toggle = document.querySelector("#previewToggle");
+  const dialog = document.querySelector("#filmDialog");
+  let inView = false;
+  let userPaused = false;
+  let manualPlay = false;
+  const updateLabel = () => {
+    toggle.textContent = film.paused ? "Play preview" : "Pause preview";
+  };
+  const syncPlayback = () => {
+    const shouldPlay =
+      inView &&
+      !document.hidden &&
+      !dialog.open &&
+      !userPaused &&
+      (!reducedMotion.matches || manualPlay);
+    if (!shouldPlay) {
+      film.pause();
+      return;
+    }
+    film
+      .play()
+      .then(() => {
+        if (
+          !inView ||
+          document.hidden ||
+          dialog.open ||
+          userPaused ||
+          (reducedMotion.matches && !manualPlay)
+        )
+          film.pause();
+      })
+      .catch(() => {
+        updateLabel();
+      });
+  };
+  film.addEventListener("play", updateLabel);
+  film.addEventListener("pause", updateLabel);
+  toggle.addEventListener("click", () => {
+    userPaused = !film.paused;
+    manualPlay = !userPaused;
+    syncPlayback();
+  });
+  new IntersectionObserver(
+    ([entry]) => {
+      inView = entry.isIntersecting && entry.intersectionRatio >= 0.25;
+      syncPlayback();
+    },
+    { threshold: [0, 0.25] },
+  ).observe(film);
+  document.addEventListener("visibilitychange", syncPlayback);
+  reducedMotion.addEventListener("change", () => {
+    manualPlay = false;
+    syncPlayback();
+  });
+  document
+    .querySelector("#openFilm")
+    .addEventListener("click", () => film.pause());
+  dialog.addEventListener("close", syncPlayback);
+}
+
 function initEnquiry() {
   const form = document.querySelector("#enquiryForm");
   const fallback = document.querySelector("#whatsappFallback");
@@ -360,5 +464,6 @@ initNavigation();
 initCarousel();
 initProducts();
 initDialogs();
+initFilmPreview();
 initEnquiry();
 document.querySelector("#year").textContent = new Date().getFullYear();
