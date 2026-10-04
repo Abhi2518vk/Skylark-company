@@ -73,14 +73,27 @@ test("contact map distinguishes company country from telephone contact", async (
     "Saudi Arabia",
   );
   const map = page.locator(".contact-map");
-  await expect(map).toContainText("Saudi Arabia — company location");
-  await expect(map).toContainText("India — +91 contact number");
+  await expect(page.locator("#locationsTitle")).toHaveText(
+    "Saudi Arabia & India.",
+  );
+  const cards = page.locator(".location-cards article");
+  await expect(cards).toHaveCount(2);
+  await expect(cards.nth(0)).toContainText("COMPANY LOCATION");
+  await expect(cards.nth(0)).toContainText("Saudi Arabia");
+  await expect(cards.nth(1)).toContainText("PHONE / WHATSAPP CONTACT");
+  await expect(cards.nth(1)).toContainText("India");
+  for (const link of await cards.locator("a").all()) {
+    await expect(link).toHaveAttribute("href", "tel:+917054929356");
+    await expect(link).toHaveText("+91 70549 29356");
+  }
+  await expect(page.locator(".location-note")).toContainText("India (+91)");
+  expect(await page.locator("#contact .contact-map").count()).toBe(0);
   await expect(map).toContainText("not street addresses");
   const mapImage = map.locator("img");
   await expect(mapImage).toHaveAttribute("src", "images/contact-region.svg");
   await expect(mapImage).not.toHaveAttribute("loading", "lazy");
   await expect(mapImage).toHaveJSProperty("complete", true);
-  await expect(mapImage).toHaveJSProperty("naturalWidth", 800);
+  await expect(mapImage).toHaveJSProperty("naturalWidth", 1000);
   const response = await page.request.get("/images/contact-region.svg");
   expect(response.ok()).toBeTruthy();
   const svg = await response.text();
@@ -95,7 +108,7 @@ test("contact map distinguishes company country from telephone contact", async (
   }
   await page.goto("/credits.html");
   await expect(page.locator("[data-map]")).toContainText(
-    "Original schematic locator",
+    "public-domain map data",
   );
 });
 

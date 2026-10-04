@@ -1,6 +1,27 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const whatsappNumber = "917054929356";
 
+function initReloadPosition() {
+  if (performance.getEntriesByType("navigation")[0]?.type !== "reload") return;
+  const restoration = history.scrollRestoration;
+  history.scrollRestoration = "manual";
+  window.addEventListener(
+    "pagehide",
+    () => {
+      history.scrollRestoration = restoration;
+    },
+    { once: true },
+  );
+  history.replaceState(history.state, "", location.pathname + location.search);
+  window.addEventListener(
+    "pageshow",
+    () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    },
+    { once: true },
+  );
+}
+
 function initNavigation() {
   const menu = document.querySelector(".navigation");
   const toggle = document.querySelector(".menu-toggle");
@@ -443,6 +464,7 @@ function initEnquiry() {
   });
 }
 
+initReloadPosition();
 initNavigation();
 initCarousel();
 initProducts();
