@@ -100,7 +100,6 @@
                 <a class="button" href="#products">Explore our collection</a>
               </div>
             </div>
-            <div class="image-note">01 / ELEVATOR AESTHETICS</div>
           </article>
           <article
             class="hero-slide"
@@ -116,7 +115,7 @@
               width="1600"
               height="1067"
               alt="Pair of escalators framed by contemporary blue-toned metal cladding"
-              loading="lazy"
+              loading="eager"
             />
             <div class="hero-shade"></div>
             <div class="container hero-content">
@@ -134,7 +133,6 @@
                 >
               </div>
             </div>
-            <div class="image-note">02 / ESCALATOR AESTHETICS</div>
           </article>
           <article
             class="hero-slide"
@@ -150,7 +148,7 @@
               width="1600"
               height="1067"
               alt="Contemporary elevator cabin interior with coordinated wall finishes"
-              loading="lazy"
+              loading="eager"
             />
             <div class="hero-shade"></div>
             <div class="container hero-content">
@@ -169,7 +167,6 @@
                 </a>
               </div>
             </div>
-            <div class="image-note">03 / BESPOKE INTERIORS</div>
           </article>
           <article
             class="hero-slide"
@@ -185,7 +182,7 @@
               width="1600"
               height="1065"
               alt="Glass elevator framed by a contemporary steel structure"
-              loading="lazy"
+              loading="eager"
             />
             <div class="hero-shade"></div>
             <div class="container hero-content">
@@ -203,7 +200,6 @@
                 </a>
               </div>
             </div>
-            <div class="image-note">04 / GLASS &amp; METAL</div>
           </article>
         </div>
         <div class="hero-bottom container">
@@ -220,7 +216,7 @@
               aria-label="Show elevator aesthetics"
               aria-pressed="true"
             >
-              <span>01</span><i></i>
+              <i aria-hidden="true"></i>
             </button>
             <button
               type="button"
@@ -229,7 +225,7 @@
               aria-label="Show escalator aesthetics"
               aria-pressed="false"
             >
-              <span>02</span><i></i>
+              <i aria-hidden="true"></i>
             </button>
             <button
               type="button"
@@ -238,7 +234,7 @@
               aria-label="Show cabin interiors"
               aria-pressed="false"
             >
-              <span>03</span><i></i>
+              <i aria-hidden="true"></i>
             </button>
             <button
               type="button"
@@ -247,31 +243,21 @@
               aria-label="Show glass and metal"
               aria-pressed="false"
             >
-              <span>04</span><i></i>
-            </button>
-            <button
-              type="button"
-              id="slidePause"
-              class="pause-button"
-              aria-label="Pause slideshow"
-              aria-pressed="false"
-            >
-              Ⅱ
+              <i aria-hidden="true"></i>
             </button>
           </div>
-          <p class="hero-motto">DESIGN IN MOTION</p>
         </div>
       </section>
       <nav class="hero-categories" aria-label="Explore product categories">
         <div class="container hero-category-grid">
           <a href="#products" data-filter-link="elevators">
-            <span>01 / THE COLLECTION</span><strong>Elevators</strong>
+            <strong>Elevators</strong>
           </a>
           <a href="#products" data-filter-link="escalators">
-            <span>02 / THE COLLECTION</span><strong>Escalators</strong>
+            <strong>Escalators</strong>
           </a>
           <a href="#products" data-filter-link="fabrication">
-            <span>03 / THE COLLECTION</span><strong>Fabrication</strong>
+            <strong>Fabrication</strong>
           </a>
         </div>
       </nav>
@@ -301,6 +287,45 @@
               >Let’s build something considered
             </a>
           </div>
+        </div>
+      </section>
+      <section id="film" class="film-section" aria-labelledby="filmTitle">
+        <video
+          id="filmPreview"
+          class="film-poster"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="images/escalator-motion-poster.webp"
+        >
+          <source src="images/skylark-motion.webm" type="video/webm" />
+          <source src="images/skylark-motion.mp4" type="video/mp4" />
+        </video>
+        <div class="film-shade"></div>
+        <div class="container film-content">
+          <div>
+            <p class="eyebrow light">ESCALATORS IN MOTION</p>
+            <h2 id="filmTitle">
+              Movement, up close.<br /><em>Escalator design in motion.</em>
+            </h2>
+            <p>Five seconds of real escalator movement, on repeat.</p>
+          </div>
+          <div class="film-controls">
+            <button
+              type="button"
+              id="filmMotion"
+              class="button button-small motion-control"
+              aria-controls="filmPreview"
+              hidden
+            >
+              Pause video
+            </button>
+          </div>
+        </div>
+        <div class="film-bottom container">
+          <span>SKYLARK / ESCALATOR DESIGN</span
+          ><span>Stock footage · not Skylark project footage</span>
         </div>
       </section>
       <section id="products" class="section products-section">
@@ -497,44 +522,6 @@
             Design inspiration, not completed Skylark projects. Aesthetics and
             fabrication, not complete lift systems. Scope confirmed per enquiry.
           </p>
-        </div>
-      </section>
-      <section id="film" class="film-section" aria-labelledby="filmTitle">
-        <video
-          id="filmPreview"
-          class="film-poster"
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          poster="images/escalator-motion-poster.webp"
-        >
-          <source src="images/skylark-motion.webm" type="video/webm" />
-          <source src="images/skylark-motion.mp4" type="video/mp4" />
-        </video>
-        <div class="film-shade"></div>
-        <div class="container film-content">
-          <div>
-            <p class="eyebrow light">ESCALATORS IN MOTION</p>
-            <h2 id="filmTitle">
-              Movement, up close.<br /><em>Escalator design in motion.</em>
-            </h2>
-            <p>Five seconds of real escalator movement, on repeat.</p>
-          </div>
-          <div class="film-controls">
-            <button
-              type="button"
-              id="previewToggle"
-              class="button button-small"
-              aria-controls="filmPreview"
-            >
-              Play preview
-            </button>
-          </div>
-        </div>
-        <div class="film-bottom container">
-          <span>SKYLARK / ESCALATOR DESIGN</span
-          ><span>Stock footage · not Skylark project footage</span>
         </div>
       </section>
       <section id="services" class="section expertise-section">

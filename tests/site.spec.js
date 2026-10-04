@@ -28,10 +28,7 @@ test("all local images load and homepage has no automated accessibility violatio
 test("carousel switches images and copy, supports keys, pauses for reduced motion", async ({
   page,
 }) => {
-  await expect(page.locator("#slidePause")).toHaveAttribute(
-    "aria-label",
-    "Play slideshow",
-  );
+  await expect(page.locator("#slidePause")).toHaveCount(0);
   await page.getByRole("button", { name: "Show escalator aesthetics" }).click();
   await expect(
     page.getByRole("heading", { name: /movement, reimagined/i }),
@@ -351,18 +348,14 @@ for (const width of [390, 1366]) {
     await page.waitForFunction(
       () => document.querySelector("#filmPreview").currentTime > 0.1,
     );
-    await expect(page.locator("#previewToggle")).toHaveText("Pause preview");
+    await expect(page.locator("#filmMotion")).toBeHidden();
     await page.locator("#home").scrollIntoViewIfNeeded();
     await expect(video).toHaveJSProperty("paused", true);
     await page.locator("#film").scrollIntoViewIfNeeded();
-    await expect(video).toHaveJSProperty("paused", false);
-    await page.locator("#previewToggle").click();
-    await expect(video).toHaveJSProperty("paused", true);
-    await page.locator("#home").scrollIntoViewIfNeeded();
-    await page.locator("#film").scrollIntoViewIfNeeded();
-    await expect(video).toHaveJSProperty("paused", true);
-    await page.locator("#previewToggle").click();
-    await expect(video).toHaveJSProperty("paused", false);
+    await page.waitForFunction(
+      () => !document.querySelector("#filmPreview").paused,
+    );
+    await expect(page.locator("#filmMotion")).toBeHidden();
   });
 }
 
@@ -371,7 +364,7 @@ test("reduced motion keeps preview still but manual play remains available", asy
 }) => {
   await page.locator("#film").scrollIntoViewIfNeeded();
   await expect(page.locator("#filmPreview")).toHaveJSProperty("paused", true);
-  await page.locator("#previewToggle").click();
+  await page.locator("#filmMotion").click();
   await expect(page.locator("#filmPreview")).toHaveJSProperty("paused", false);
 });
 
@@ -399,12 +392,78 @@ test("blocked autoplay leaves a working manual play control", async ({
       }),
     )
     .toBeGreaterThanOrEqual(0.25);
-  await expect(page.locator("#previewToggle")).toHaveText("Play preview");
+  await expect(page.locator("#filmMotion")).toBeVisible();
+  await expect(page.locator("#filmMotion")).toHaveText("Play video");
   await page.evaluate(() => {
     delete document.querySelector("#filmPreview").play;
   });
-  await page.locator("#previewToggle").click();
+  await page.locator("#filmMotion").click();
   await expect(page.locator("#filmPreview")).toHaveJSProperty("paused", false);
+});
+
+test("motion section follows company and precedes products without a visible preview button", async ({
+  page,
+}) => {
+  const sections = await page
+    .locator("main > section[id]")
+    .evaluateAll((items) => items.map((item) => item.id));
+  expect(sections.indexOf("film")).toBe(sections.indexOf("company") + 1);
+  expect(sections.indexOf("products")).toBe(sections.indexOf("film") + 1);
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  const video = page.locator("#filmPreview");
+  await video.scrollIntoViewIfNeeded();
+  await page.waitForFunction(
+    () => document.querySelector("#filmPreview").currentTime > 0.1,
+  );
+  await expect(page.locator("#filmMotion")).toBeHidden();
+});
+
+test("carousel keeps cycling after manual selection and omits decorative numbering", async ({
+  page,
+}) => {
+  await page.clock.install();
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.locator('[data-go-slide="1"]').click();
+  await expect(page.locator('[data-slide="1"]')).toHaveClass(/is-active/);
+  await page.clock.fastForward(6600);
+  await expect(page.locator('[data-slide="2"]')).toHaveClass(/is-active/);
+  await page.clock.fastForward(6600);
+  await expect(page.locator('[data-slide="3"]')).toHaveClass(/is-active/);
+  await expect(
+    page.locator(
+      ".hero-motto, .image-note, .slide-dot span, .hero-category-grid span",
+    ),
+  ).toHaveCount(0);
+  await expect(page.locator(".hero-image")).toHaveCount(4);
+});
+
+test("selected category content sits right of its image on desktop and stacks on mobile", async ({
+  page,
+}) => {
+  for (const category of ["elevators", "escalators", "fabrication"]) {
+    await page.setViewportSize({ width: 1366, height: 900 });
+    await page.locator('[data-filter="' + category + '"]').click();
+    const card = page.locator(
+      '.product-card[data-category="' + category + '"]',
+    );
+    const desktop = await card.evaluate((node) => ({
+      image: node.querySelector("img").getBoundingClientRect().toJSON(),
+      heading: node.querySelector("h3").getBoundingClientRect().toJSON(),
+      button: node
+        .querySelector("[data-product]")
+        .getBoundingClientRect()
+        .toJSON(),
+    }));
+    expect(desktop.heading.left).toBeGreaterThan(desktop.image.right);
+    expect(desktop.button.left).toBeGreaterThan(desktop.image.right);
+    await page.setViewportSize({ width: 390, height: 844 });
+    const mobile = await card.evaluate((node) => ({
+      image: node.querySelector("img").getBoundingClientRect().toJSON(),
+      heading: node.querySelector("h3").getBoundingClientRect().toJSON(),
+    }));
+    expect(mobile.heading.top).toBeGreaterThanOrEqual(mobile.image.bottom);
+    await page.locator('[data-filter="all"]').click();
+  }
 });
 
 test("capture review screenshots", async ({ page }) => {

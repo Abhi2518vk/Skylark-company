@@ -380,24 +380,6 @@ textarea:focus-visible {
   color: var(--white);
   font-size: 17px;
 }
-.hero-motto {
-  font-size: 9px;
-  letter-spacing: 1.9px;
-  color: #d3dee6;
-}
-.hero-motto b {
-  margin-inline: 10px;
-  color: var(--sky);
-}
-.image-note {
-  position: absolute;
-  bottom: 136px;
-  right: 3%;
-  writing-mode: vertical-rl;
-  font-size: 8px;
-  letter-spacing: 2px;
-  color: #e2ecf2;
-}
 .capability-strip {
   background: var(--navy);
   color: #b9cbd7;
@@ -1191,9 +1173,6 @@ dialog::backdrop {
   .hero h2 {
     font-size: 88px;
   }
-  .hero-motto {
-    display: none;
-  }
   .enquiry-form {
     padding: 30px;
   }
@@ -1284,9 +1263,6 @@ dialog::backdrop {
     background:
       linear-gradient(90deg, rgb(5 23 37 / 88%), rgb(5 23 37 / 28%)),
       linear-gradient(0deg, rgb(5 23 37 / 92%), transparent 50%);
-  }
-  .image-note {
-    display: none;
   }
   .capability-strip .container {
     gap: 15px;
@@ -2009,9 +1985,6 @@ dialog::backdrop {
   .brand-wordmark {
     font-size: 20px;
   }
-  .hero-motto {
-    display: none;
-  }
 }
 @media (max-width: 850px) {
   html {
@@ -2191,11 +2164,6 @@ dialog::backdrop {
   border-color: #a6c9dd;
   background: rgb(255 255 255 / 16%);
 }
-.hero-category-grid span {
-  color: #acc6d5;
-  font-size: 9px;
-  letter-spacing: 1.5px;
-}
 .hero-category-grid strong {
   font-size: 21px;
   font-weight: 550;
@@ -2281,9 +2249,6 @@ dialog::backdrop {
   .hero-category-grid strong {
     font-size: 16px;
   }
-  .hero-category-grid span {
-    font-size: 8px;
-  }
 }
 @media (max-width: 560px) {
   .hero-image {
@@ -2299,13 +2264,43 @@ dialog::backdrop {
   .hero-category-grid strong {
     font-size: 13px;
   }
-  .hero-category-grid span {
-    font-size: 7px;
-    letter-spacing: 0.4px;
-  }
   .product-list button {
     min-height: 68px;
     padding: 12px;
     font-size: 12px;
+  }
+}
+
+.products-grid.is-filtered {
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 851px) {
+  .products-grid.is-filtered .product-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: start;
+    gap: clamp(28px, 4vw, 60px);
+  }
+  .products-grid.is-filtered .catalog-image {
+    height: clamp(300px, 31vw, 430px);
+  }
+  .products-grid.is-filtered .product-info {
+    padding-top: 0;
+  }
+  .products-grid.is-filtered .product-info h3 {
+    font-size: clamp(26px, 2.8vw, 36px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-slide.is-active .hero-image {
+    animation: hero-drift 6.5s linear both;
+  }
+}
+@keyframes hero-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.045);
   }
 }

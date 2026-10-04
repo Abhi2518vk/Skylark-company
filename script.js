@@ -56,22 +56,18 @@ function initCarousel() {
   const hero = document.querySelector(".hero");
   const slides = [...hero.querySelectorAll(".hero-slide")];
   const dots = [...hero.querySelectorAll("[data-go-slide]")];
-  const pause = document.querySelector("#slidePause");
   let current = 0;
   let paused = reducedMotion.matches;
   let timer;
   let isVisible = true;
-  const updatePause = () => {
-    pause.setAttribute("aria-pressed", String(paused));
-    pause.setAttribute(
-      "aria-label",
-      paused ? "Play slideshow" : "Pause slideshow",
-    );
-    pause.textContent = paused ? "▶" : "Ⅱ";
-  };
   const schedule = () => {
     window.clearTimeout(timer);
-    if (!paused && !document.hidden && isVisible)
+    if (
+      !paused &&
+      !document.hidden &&
+      isVisible &&
+      !slides[current].contains(document.activeElement)
+    )
       timer = window.setTimeout(() => show(current + 1), 6500);
   };
   const show = (index) => {
@@ -86,29 +82,16 @@ function initCarousel() {
     });
     schedule();
   };
-  const stop = () => {
-    paused = true;
-    updatePause();
-    schedule();
-  };
   dots.forEach((dot, index) =>
     dot.addEventListener("click", () => {
-      stop();
       show(index);
     }),
   );
-  pause.addEventListener("click", () => {
-    paused = !paused;
-    updatePause();
-    schedule();
-  });
-  hero.addEventListener("focusin", (event) => {
-    if (event.target !== pause) stop();
-  });
+  hero.addEventListener("focusin", schedule);
+  hero.addEventListener("focusout", () => queueMicrotask(schedule));
   hero.addEventListener("keydown", (event) => {
     if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
     event.preventDefault();
-    stop();
     show(current + (event.key === "ArrowRight" ? 1 : -1));
     dots[current].focus();
   });
@@ -130,24 +113,28 @@ function initCarousel() {
       const dx = event.changedTouches[0].clientX - touchStart.x;
       const dy = event.changedTouches[0].clientY - touchStart.y;
       if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-        stop();
         show(current + (dx < 0 ? 1 : -1));
       }
       touchStart = null;
     },
     { passive: true },
   );
-  reducedMotion.addEventListener("change", stop);
+  reducedMotion.addEventListener("change", () => {
+    paused = reducedMotion.matches;
+    schedule();
+  });
   document.addEventListener("visibilitychange", schedule);
   new IntersectionObserver(([entry]) => {
     isVisible = entry.isIntersecting;
     schedule();
   }).observe(hero);
-  updatePause();
   schedule();
 }
 
 function filterProducts(category) {
+  document
+    .querySelector(".products-grid")
+    .classList.toggle("is-filtered", category !== "all");
   let count = 0;
   document.querySelectorAll(".product-card").forEach((card) => {
     card.hidden = category !== "all" && card.dataset.category !== category;
@@ -341,43 +328,48 @@ function initDialogs() {
 
 function initFilmPreview() {
   const film = document.querySelector("#filmPreview");
-  const toggle = document.querySelector("#previewToggle");
+  const toggle = document.querySelector("#filmMotion");
   let inView = false;
-  let userPaused = false;
   let manualPlay = false;
+  let playbackBlocked = false;
   const updateLabel = () => {
-    toggle.textContent = film.paused ? "Play preview" : "Pause preview";
+    toggle.textContent = "Play video";
+    toggle.hidden = !(
+      inView &&
+      film.paused &&
+      (playbackBlocked || reducedMotion.matches)
+    );
   };
   const syncPlayback = () => {
     const shouldPlay =
-      inView &&
-      !document.hidden &&
-      !userPaused &&
-      (!reducedMotion.matches || manualPlay);
+      inView && !document.hidden && (!reducedMotion.matches || manualPlay);
     if (!shouldPlay) {
       film.pause();
+      updateLabel();
       return;
     }
     film
       .play()
       .then(() => {
+        playbackBlocked = false;
         if (
           !inView ||
           document.hidden ||
-          userPaused ||
           (reducedMotion.matches && !manualPlay)
         )
           film.pause();
+        updateLabel();
       })
       .catch(() => {
+        playbackBlocked = true;
         updateLabel();
       });
   };
   film.addEventListener("play", updateLabel);
   film.addEventListener("pause", updateLabel);
   toggle.addEventListener("click", () => {
-    userPaused = !film.paused;
-    manualPlay = !userPaused;
+    manualPlay = true;
+    playbackBlocked = false;
     syncPlayback();
   });
   new IntersectionObserver(
