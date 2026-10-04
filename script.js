@@ -337,28 +337,11 @@ function initDialogs() {
       document.body.classList.remove("dialog-open"),
     );
   });
-  const film = document.querySelector("#brandFilm");
-  const dialog = document.querySelector("#filmDialog");
-  const status = document.querySelector("#videoStatus");
-  document.querySelector("#openFilm").addEventListener("click", () => {
-    openDialog(dialog);
-    status.textContent = "";
-    film.play().catch(() => {
-      status.textContent =
-        "Use the player’s play button to start the film. If playback is unavailable, the design inspiration images remain available above.";
-    });
-  });
-  dialog.addEventListener("close", () => film.pause());
-  film.addEventListener("error", () => {
-    status.textContent =
-      "The film could not load. Please try again or explore the design inspiration images above.";
-  });
 }
 
 function initFilmPreview() {
   const film = document.querySelector("#filmPreview");
   const toggle = document.querySelector("#previewToggle");
-  const dialog = document.querySelector("#filmDialog");
   let inView = false;
   let userPaused = false;
   let manualPlay = false;
@@ -369,7 +352,6 @@ function initFilmPreview() {
     const shouldPlay =
       inView &&
       !document.hidden &&
-      !dialog.open &&
       !userPaused &&
       (!reducedMotion.matches || manualPlay);
     if (!shouldPlay) {
@@ -382,7 +364,6 @@ function initFilmPreview() {
         if (
           !inView ||
           document.hidden ||
-          dialog.open ||
           userPaused ||
           (reducedMotion.matches && !manualPlay)
         )
@@ -411,10 +392,6 @@ function initFilmPreview() {
     manualPlay = false;
     syncPlayback();
   });
-  document
-    .querySelector("#openFilm")
-    .addEventListener("click", () => film.pause());
-  dialog.addEventListener("close", syncPlayback);
 }
 
 function initEnquiry() {

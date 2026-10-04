@@ -62,7 +62,7 @@ test("filters and every product enquiry preselect the matching solution", async 
     ).toHaveCount(count);
   }
   for (const button of await page.locator("[data-product]").all()) {
-    const title = (await button.innerText()).replace("↗", "").trim();
+    const title = (await button.innerText()).trim();
     await button.click();
     await expect(page.locator("#productDialog")).toBeVisible();
     await expect(page.locator("#dialogTitle")).toHaveText(title);
@@ -138,21 +138,26 @@ test("WhatsApp validates consent and phone, encodes details, and handles blocked
   await expect(page.locator("#whatsappFallback")).not.toBeVisible();
 });
 
-test("film actually decodes and advances, and pauses when its dialog closes", async ({
+test("the real five-second escalator clip loads and loops without another film dialog", async ({
   page,
 }) => {
-  await page.locator("#openFilm").click();
-  await expect(page.locator("#filmDialog")).toBeVisible();
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.locator("#film").scrollIntoViewIfNeeded();
   await page.waitForFunction(
-    () => document.querySelector("#brandFilm").currentTime > 0.1,
+    () => document.querySelector("#filmPreview").currentTime > 0.1,
   );
   const duration = await page
-    .locator("#brandFilm")
+    .locator("#filmPreview")
     .evaluate((video) => video.duration);
-  expect(duration).toBeGreaterThan(8.9);
-  expect(duration).toBeLessThan(9.2);
-  await page.keyboard.press("Escape");
-  await expect(page.locator("#brandFilm")).toHaveJSProperty("paused", true);
+  expect(duration).toBeGreaterThanOrEqual(4.9);
+  expect(duration).toBeLessThanOrEqual(5.1);
+  await expect(page.locator("#filmDialog, #openFilm, #brandFilm")).toHaveCount(
+    0,
+  );
+  await expect(page.locator("#filmPreview")).toHaveAttribute(
+    "poster",
+    "images/escalator-motion-poster.webp",
+  );
 });
 
 test("credits attribute every deployed photograph and adapted film", async ({
@@ -169,6 +174,7 @@ test("credits attribute every deployed photograph and adapted film", async ({
   await expect(page.locator(".credits-note")).toContainText(
     "render status is not verified",
   );
+  await expect(page.getByText("Pixabay Content License")).toBeVisible();
 });
 
 test("every deployed design-inspiration photo has a source and licence credit", async ({
@@ -197,31 +203,29 @@ test("every deployed design-inspiration photo has a source and licence credit", 
   expect(articles.flatMap(({ files }) => files).sort()).toEqual(images);
 });
 
-test("refined layout preserves an explicit desktop frame and mobile image-first hero", async ({
+test("four photographic hero slides fill the background on desktop and mobile", async ({
   page,
 }) => {
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  const desktop = await page
-    .locator(".hero-image")
-    .first()
-    .evaluate((image) => ({
-      pageWidth: window.innerWidth,
-      imageWidth: image.getBoundingClientRect().width,
-      heroWidth: image.closest(".hero").getBoundingClientRect().width,
-    }));
-  expect(desktop.imageWidth / desktop.heroWidth).toBeGreaterThan(0.5);
-  expect(desktop.imageWidth / desktop.heroWidth).toBeLessThan(0.6);
-  await page.setViewportSize({ width: 390, height: 844 });
-  const mobile = await page
-    .locator(".hero-image")
-    .first()
-    .evaluate((image) => ({
-      imageHeight: image.getBoundingClientRect().height,
-      heroHeight: image.closest(".hero").getBoundingClientRect().height,
-    }));
-  expect(mobile.imageHeight / mobile.heroHeight).toBeGreaterThan(0.35);
-  expect(mobile.imageHeight / mobile.heroHeight).toBeLessThan(0.4);
+  for (const width of [390, 960, 1440]) {
+    await page.setViewportSize({ width, height: 844 });
+    for (let index = 0; index < 4; index++) {
+      await page.locator(`[data-go-slide="${index}"]`).click();
+      const bounds = await page
+        .locator(".hero-slide.is-active img")
+        .evaluate((image) => ({
+          imageWidth: image.getBoundingClientRect().width,
+          imageHeight: image.getBoundingClientRect().height,
+          heroWidth: image.closest(".hero").getBoundingClientRect().width,
+          heroHeight: image.closest(".hero").getBoundingClientRect().height,
+          objectFit: getComputedStyle(image).objectFit,
+        }));
+      expect(bounds.imageWidth).toBe(bounds.heroWidth);
+      expect(bounds.imageHeight).toBe(bounds.heroHeight);
+      expect(bounds.objectFit).toBe("cover");
+    }
+  }
   await expect(page.locator(".brand-wordmark")).toHaveText(/SKYLARK/);
+  await expect(page.locator(".hero .play-small")).toHaveCount(0);
 });
 
 test("tablet keeps the intended content width and hero heading scale", async ({
@@ -260,6 +264,26 @@ test("catalogue includes the requested elevator and escalator products", async (
     "Child Safety Guards",
   ]);
   await expect(page.getByText("VIEW PROJECTS", { exact: true })).toHaveCount(0);
+  await expect(
+    page.locator(".product-list button span[aria-hidden]"),
+  ).toHaveCount(0);
+  await expect(page.locator(".hero-category-grid a")).toHaveCount(3);
+  for (const [category, count] of [
+    ["elevators", 7],
+    ["escalators", 3],
+    ["fabrication", 1],
+  ]) {
+    await page
+      .locator(`.hero-category-grid [data-filter-link="${category}"]`)
+      .click();
+    await expect(
+      page.locator(".product-card:not([hidden]) [data-product]"),
+    ).toHaveCount(count);
+    await expect(page.locator(`[data-filter="${category}"]`)).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+  }
 });
 
 test("four slides keep every heading and action within laptop and phone bounds", async ({
@@ -339,10 +363,6 @@ for (const width of [390, 1366]) {
     await expect(video).toHaveJSProperty("paused", true);
     await page.locator("#previewToggle").click();
     await expect(video).toHaveJSProperty("paused", false);
-    await page.locator("#openFilm").click();
-    await expect(video).toHaveJSProperty("paused", true);
-    await page.keyboard.press("Escape");
-    await expect(video).toHaveJSProperty("paused", false);
   });
 }
 
@@ -364,7 +384,21 @@ test("blocked autoplay leaves a working manual play control", async ({
     video.play = () =>
       Promise.reject(new DOMException("Playback blocked", "NotAllowedError"));
   });
-  await page.locator("#film").scrollIntoViewIfNeeded();
+  const video = page.locator("#filmPreview");
+  await video.scrollIntoViewIfNeeded();
+  await expect
+    .poll(() =>
+      video.evaluate((element) => {
+        const box = element.getBoundingClientRect();
+        return (
+          Math.max(
+            0,
+            Math.min(box.bottom, innerHeight) - Math.max(box.top, 0),
+          ) / box.height
+        );
+      }),
+    )
+    .toBeGreaterThanOrEqual(0.25);
   await expect(page.locator("#previewToggle")).toHaveText("Play preview");
   await page.evaluate(() => {
     delete document.querySelector("#filmPreview").play;
