@@ -171,6 +171,32 @@ test("credits attribute every deployed photograph and adapted film", async ({
   );
 });
 
+test("every deployed design-inspiration photo has a source and licence credit", async ({
+  page,
+}) => {
+  const images = await page
+    .locator("main img")
+    .evaluateAll((items) =>
+      [...new Set(items.map((image) => image.getAttribute("src")))].sort(),
+    );
+  await page.goto("/credits.html");
+  const articles = await page
+    .locator(".credits-table article[data-image]")
+    .evaluateAll((items) =>
+      items.map((article) => ({
+        files: article.dataset.image.split(" "),
+        hasSource: !!article.querySelector(
+          'a[href^="https://unsplash.com/photos/"]',
+        ),
+        hasLicense: article.textContent.includes("Unsplash License"),
+      })),
+    );
+  expect(
+    articles.every(({ hasSource, hasLicense }) => hasSource && hasLicense),
+  ).toBe(true);
+  expect(articles.flatMap(({ files }) => files).sort()).toEqual(images);
+});
+
 test("refined layout preserves an explicit desktop frame and mobile image-first hero", async ({
   page,
 }) => {
