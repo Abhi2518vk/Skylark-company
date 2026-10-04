@@ -124,7 +124,7 @@ test("WhatsApp validates consent and phone, encodes details, and handles blocked
   await page.locator(".submit-button").click();
   const href = await page.locator("#whatsappFallback").getAttribute("href");
   const url = new URL(href);
-  expect(url.origin + url.pathname).toBe("https://wa.me/917054929356");
+  expect(url.origin + url.pathname).toBe("https://wa.me/966562993497");
   expect(url.searchParams.get("text")).toContain("Solution: Cabin Interiors");
   expect(url.searchParams.get("text")).toContain(
     "Company: Design & Build + Partners",
@@ -197,7 +197,7 @@ test("credits attribute every deployed photograph and adapted film", async ({
   ).toContainText("footage, not a Skylark project.");
 });
 
-test("every deployed design-inspiration photo has a source and licence credit", async ({
+test("every deployed design image has explicit stock or client provenance", async ({
   page,
 }) => {
   const images = await page
@@ -217,6 +217,17 @@ test("every deployed design-inspiration photo has a source and licence credit", 
     .evaluateAll((items) =>
       items.map((article) => ({
         files: article.dataset.image.split(" "),
+        isClient: article.dataset.source === "client",
+        hasClientDisclosure:
+          article.textContent
+            .replace(/\s+/g, " ")
+            .includes("Provided by the client") &&
+          article.textContent
+            .replace(/\s+/g, " ")
+            .includes("not verified completed Skylark projects") &&
+          article.textContent
+            .replace(/\s+/g, " ")
+            .includes("have not been independently verified"),
         hasSource: !!article.querySelector(
           'a[href^="https://unsplash.com/photos/"], a[href^="https://stocksnap.io/photo/"], a[href^="https://www.flickr.com/photos/"]',
         ),
@@ -226,7 +237,10 @@ test("every deployed design-inspiration photo has a source and licence credit", 
       })),
     );
   expect(
-    articles.every(({ hasSource, hasLicense }) => hasSource && hasLicense),
+    articles.every(
+      ({ isClient, hasClientDisclosure, hasSource, hasLicense }) =>
+        isClient ? hasClientDisclosure : hasSource && hasLicense,
+    ),
   ).toBe(true);
   expect(articles.flatMap(({ files }) => files).sort()).toEqual(images);
 });

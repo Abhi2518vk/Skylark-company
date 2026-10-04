@@ -66,11 +66,11 @@ test("each product has its own relevant deployed illustration or photograph", as
   );
 });
 
-test("contact map distinguishes company country from telephone contact", async ({
+test("contact map distinguishes supplied Saudi pin from India phone contact", async ({
   page,
 }) => {
   await expect(page.locator(".company-location strong")).toHaveText(
-    "Saudi Arabia",
+    "Riyadh, Saudi Arabia",
   );
   const map = page.locator(".contact-map");
   await expect(page.locator("#locationsTitle")).toHaveText(
@@ -80,15 +80,20 @@ test("contact map distinguishes company country from telephone contact", async (
   await expect(cards).toHaveCount(2);
   await expect(cards.nth(0)).toContainText("COMPANY LOCATION");
   await expect(cards.nth(0)).toContainText("Saudi Arabia");
-  await expect(cards.nth(1)).toContainText("PHONE / WHATSAPP CONTACT");
+  await expect(cards.nth(0).locator('a[href^="tel:"]')).toHaveAttribute(
+    "href",
+    "tel:+966562993497",
+  );
+  await expect(cards.nth(1)).toContainText("INDIA PHONE CONTACT");
   await expect(cards.nth(1)).toContainText("India");
-  for (const link of await cards.locator("a").all()) {
-    await expect(link).toHaveAttribute("href", "tel:+917054929356");
-    await expect(link).toHaveText("+91 70549 29356");
-  }
-  await expect(page.locator(".location-note")).toContainText("India (+91)");
+  await expect(cards.nth(1).locator('a[href^="tel:"]')).toHaveAttribute(
+    "href",
+    "tel:+917054929356",
+  );
+  await expect(page.locator(".location-note")).toContainText("not an office");
   expect(await page.locator("#contact .contact-map").count()).toBe(0);
-  await expect(map).toContainText("not street addresses");
+  await expect(map).toContainText("supplied Riyadh location pin");
+  await expect(map).toContainText("not an office address");
   const mapImage = map.locator("img");
   await expect(mapImage).toHaveAttribute("src", "images/contact-region.svg");
   await expect(mapImage).not.toHaveAttribute("loading", "lazy");

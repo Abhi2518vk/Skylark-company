@@ -1,5 +1,5 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const whatsappNumber = "917054929356";
+const whatsappNumber = "966562993497";
 
 function initReloadPosition() {
   if (performance.getEntriesByType("navigation")[0]?.type !== "reload") return;
@@ -153,6 +153,8 @@ function initCarousel() {
 }
 
 function filterProducts(category) {
+  document.querySelector(".cabin-gallery").hidden =
+    category !== "all" && category !== "elevators";
   document
     .querySelector(".products-grid")
     .classList.toggle("is-filtered", category !== "all");
