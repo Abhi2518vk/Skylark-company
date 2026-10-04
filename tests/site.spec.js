@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 test("all local images load and homepage has no automated accessibility violations", async ({
   page,
 }) => {
-  await expect(page).toHaveTitle(/Skylark Elevators/);
+  await expect(page).toHaveTitle(/Skylark \| Elevator & Escalator Design/);
   await expect(
     page.getByRole("heading", { name: /crafted to elevate/i }),
   ).toBeVisible();
@@ -38,7 +38,7 @@ test("carousel switches images and copy, supports keys, pauses for reduced motio
   ).toBeVisible();
   await expect(page.locator(".hero-slide.is-active img")).toHaveAttribute(
     "src",
-    "images/escalator.webp",
+    "images/escalator-design.webp",
   );
   await page.keyboard.press("ArrowRight");
   await expect(
@@ -160,18 +160,57 @@ test("credits attribute every deployed photograph and adapted film", async ({
   await expect(
     page.getByRole("heading", { name: /image credits/i }),
   ).toBeVisible();
-  await expect(page.getByText("Wonderlane", { exact: true })).toBeVisible();
+  await expect(page.getByText("Aalo Lens", { exact: true })).toBeVisible();
   await expect(
-    page.getByRole("heading", {
-      name: "BankTaiwan Securities elevator entrance",
-    }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: "Grand Canyon shopping mall" }),
+    page.getByRole("heading", { name: "Stainless-steel bollards" }),
   ).toBeVisible();
   await expect(page.locator(".credits-note")).toContainText(
-    "adaptation licensed",
+    "render status is not verified",
   );
+});
+
+test("refined layout preserves an explicit desktop frame and mobile image-first hero", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  const desktop = await page
+    .locator(".hero-image")
+    .first()
+    .evaluate((image) => ({
+      pageWidth: window.innerWidth,
+      imageWidth: image.getBoundingClientRect().width,
+      heroWidth: image.closest(".hero").getBoundingClientRect().width,
+    }));
+  expect(desktop.imageWidth / desktop.heroWidth).toBeGreaterThan(0.5);
+  expect(desktop.imageWidth / desktop.heroWidth).toBeLessThan(0.6);
+  await page.setViewportSize({ width: 390, height: 844 });
+  const mobile = await page
+    .locator(".hero-image")
+    .first()
+    .evaluate((image) => ({
+      imageHeight: image.getBoundingClientRect().height,
+      heroHeight: image.closest(".hero").getBoundingClientRect().height,
+    }));
+  expect(mobile.imageHeight / mobile.heroHeight).toBeGreaterThan(0.4);
+  expect(mobile.imageHeight / mobile.heroHeight).toBeLessThan(0.5);
+  await expect(page.locator(".brand-wordmark")).toHaveText(/SKYLARK/);
+});
+
+test("all six product cards use distinct, category-relevant media", async ({
+  page,
+}) => {
+  const sources = await page
+    .locator(".product-card img")
+    .evaluateAll((images) => images.map((image) => image.getAttribute("src")));
+  expect(new Set(sources).size).toBe(6);
+  expect(sources).toEqual([
+    "images/cabin.webp",
+    "images/entrance.webp",
+    "images/escalator-design.webp",
+    "images/finishes.webp",
+    "images/guards.webp",
+    "images/metalwork.webp",
+  ]);
 });
 
 test("capture review screenshots", async ({ page }) => {
