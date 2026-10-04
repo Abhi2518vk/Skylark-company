@@ -138,6 +138,14 @@ test("WhatsApp validates consent and phone, encodes details, and handles blocked
 test("the real five-second escalator clip loads and loops without another film dialog", async ({
   page,
 }) => {
+  await expect(page.locator(".film-bottom")).toHaveText(
+    "SKYLARK / ESCALATOR DESIGN",
+  );
+  await expect(
+    page
+      .locator("#film")
+      .getByText(/stock footage|not Skylark project footage/i),
+  ).toHaveCount(0);
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.locator("#film").scrollIntoViewIfNeeded();
   await page.waitForFunction(
@@ -172,6 +180,13 @@ test("credits attribute every deployed photograph and adapted film", async ({
     "render status is not verified",
   );
   await expect(page.getByText("Pixabay Content License")).toBeVisible();
+  await expect(
+    page.locator(".credits-table article").filter({
+      has: page.getByRole("heading", {
+        name: "Five-second escalator film and poster",
+      }),
+    }),
+  ).toContainText("footage, not a Skylark project.");
 });
 
 test("every deployed design-inspiration photo has a source and licence credit", async ({
