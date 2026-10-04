@@ -1,572 +1,1049 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skylark Elevators And Fabrication Company - Elevator & Escalator Aesthetics & Metal Fabrication</title>
-  <meta name="description" content="Skylark Elevators And Fabrication Company specializes in Elevators, Escalators, Cabin Interiors, Architraves, Cladding, and Custom Fabrication. Contact us at Phone: 7054929356.">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-  <!-- Header / Navigation -->
-  <header class="header">
-    <div class="container navbar">
-      <a href="#home" class="logo">
-        <img src="images/logo.webp" alt="Skylark Elevators Logo" class="logo-img" width="160" height="50">
-        <div class="logo-text">
-          <span class="logo-main">SKYLARK ELEVATORS</span>
-          <span class="logo-tagline">SAFE | RELIABLE | ALWAYS UP</span>
-        </div>
-      </a>
-
-      <nav>
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#company" class="nav-link">The Company</a></li>
-          <li><a href="#products" class="nav-link">Products</a></li>
-          <li><a href="#services" class="nav-link">Services</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="mobile-toggle" id="mobileToggle">
-        <i class="fa-solid fa-bars"></i>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a263c" />
+    <title>Skylark Elevators &amp; Fabrication | Crafted to elevate.</title>
+    <meta
+      name="description"
+      content="Elevator cabin interiors, door cladding, escalator aesthetics and architectural metal fabrication. Discover a considered approach to vertical spaces with Skylark."
+    />
+    <meta property="og:title" content="Skylark — Crafted to elevate." />
+    <meta
+      property="og:description"
+      content="Elevator &amp; escalator aesthetics. Precision fabrication. A new perspective on every journey."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.skylark-sa.com/" />
+    <meta
+      property="og:image"
+      content="https://www.skylark-sa.com/images/elevator-lobby.webp"
+    />
+    <link rel="canonical" href="https://www.skylark-sa.com/" />
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+    <link rel="preload" href="images/elevator-lobby.webp" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner container">
+        <a class="brand" href="#home" aria-label="Skylark Elevators home"
+          ><img
+            src="images/brand-logo.webp"
+            width="327"
+            height="147"
+            alt="Skylark Elevators — lifting a better tomorrow"
+        /></a>
+        <nav id="navigation" class="navigation" aria-label="Main navigation">
+          <a href="#home" class="active" aria-current="location">Home</a>
+          <a href="#company">The company</a>
+          <a href="#products">Our products</a>
+          <a href="#services">Our expertise</a>
+          <a href="#contact" class="mobile-contact">Contact us</a>
+        </nav>
+        <a href="#contact" class="button button-small header-cta"
+          >Let’s talk <span aria-hidden="true">↗</span></a
+        >
+        <button
+          type="button"
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="navigation"
+          aria-label="Open navigation"
+        >
+          <span></span><span></span>
+        </button>
       </div>
-    </div>
-  </header>
-
-  <!-- Home / Hero Section with Auto Slide Show (Every 2 Secs) -->
-  <section id="home" class="hero">
-    <div class="hero-slider" id="heroSlider">
-      <div class="slide active" style="background-image: url('images/hero-1.webp');"></div>
-      <div class="slide" style="background-image: url('images/hero-2.webp');"></div>
-      <div class="slide" style="background-image: url('images/hero-3.webp');"></div>
-      <div class="slide" style="background-image: url('images/cabin-interior.webp');"></div>
-      <div class="slide" style="background-image: url('images/hero-1.webp');"></div>
-    </div>
-    <div class="hero-overlay"></div>
-
-    <div class="container hero-container">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <i class="fa-solid fa-award"></i> Specialists in Elevator & Escalator Aesthetics
+    </header>
+    <main id="main">
+      <section
+        id="home"
+        class="hero"
+        aria-label="Skylark introduction"
+        aria-roledescription="carousel"
+      >
+        <div class="hero-slides">
+          <article
+            class="hero-slide is-active"
+            data-slide="0"
+            aria-label="1 of 3: Elevator aesthetics"
+            aria-roledescription="slide"
+          >
+            <img
+              class="hero-image"
+              src="images/elevator-lobby.webp"
+              width="1920"
+              height="1280"
+              alt="Architectural elevator entrance with refined metallic finishes"
+              fetchpriority="high"
+            />
+            <div class="hero-shade"></div>
+            <div class="container hero-content">
+              <p class="eyebrow light">
+                <span></span> Elevator &amp; escalator aesthetics
+              </p>
+              <h1>Crafted to<br /><em>elevate.</em></h1>
+              <p class="hero-copy">
+                Beyond movement. An expression of design.<br />Considered
+                interiors and precision metalwork<br class="desktop-break" />
+                for the spaces that move us.
+              </p>
+              <div class="hero-actions">
+                <a class="button" href="#products"
+                  >Explore our collection <span aria-hidden="true">↗</span></a
+                ><a class="text-link light-link" href="#film"
+                  ><span class="play-small" aria-hidden="true">▶</span> A
+                  perspective in motion</a
+                >
+              </div>
+            </div>
+            <div class="image-note">01 / ELEVATOR AESTHETICS</div>
+          </article>
+          <article
+            class="hero-slide"
+            data-slide="1"
+            aria-label="2 of 3: Escalator aesthetics"
+            aria-roledescription="slide"
+            aria-hidden="true"
+            inert
+          >
+            <img
+              class="hero-image"
+              src="images/escalator.webp"
+              width="1920"
+              height="1280"
+              alt="Sweeping escalators with glass balustrades in a contemporary interior"
+              loading="lazy"
+            />
+            <div class="hero-shade"></div>
+            <div class="container hero-content">
+              <p class="eyebrow light"><span></span> Seamless by design</p>
+              <h2>Movement,<br /><em>reimagined.</em></h2>
+              <p class="hero-copy">
+                Refined cladding. Thoughtful detailing.<br />Escalator
+                aesthetics that connect levels<br class="desktop-break" />
+                and complement the architecture around them.
+              </p>
+              <div class="hero-actions">
+                <a class="button" href="#products" data-filter-link="escalators"
+                  >Discover escalator solutions
+                  <span aria-hidden="true">↗</span></a
+                ><a class="text-link light-link" href="#contact"
+                  >Discuss your vision <span aria-hidden="true">↗</span></a
+                >
+              </div>
+            </div>
+            <div class="image-note">02 / ESCALATOR AESTHETICS</div>
+          </article>
+          <article
+            class="hero-slide"
+            data-slide="2"
+            aria-label="3 of 3: Cabin interiors"
+            aria-roledescription="slide"
+            aria-hidden="true"
+            inert
+          >
+            <img
+              class="hero-image"
+              src="images/elevator-interior-v2.webp"
+              width="1920"
+              height="1280"
+              alt="Elevator cabin showing carefully coordinated surfaces and interior details"
+              loading="lazy"
+            />
+            <div class="hero-shade"></div>
+            <div class="container hero-content">
+              <p class="eyebrow light">
+                <span></span> Detail makes the difference
+              </p>
+              <h2>Every detail.<br /><em>Elevated.</em></h2>
+              <p class="hero-copy">
+                From the first sketch to the final finish.<br />Cabin interiors
+                and bespoke fabrication,<br class="desktop-break" />
+                shaped around your architectural vision.
+              </p>
+              <div class="hero-actions">
+                <a class="button" href="#services"
+                  >Explore our expertise <span aria-hidden="true">↗</span></a
+                ><a class="text-link light-link" href="#contact"
+                  >Start a conversation <span aria-hidden="true">↗</span></a
+                >
+              </div>
+            </div>
+            <div class="image-note">03 / BESPOKE INTERIORS</div>
+          </article>
         </div>
-        <h1 class="hero-title">Elevators & Escalators <span>Aesthetics & Fabrication</span></h1>
-        <p class="hero-description">
-          Preparing the future with passion. Engineering, design, custom manufacturing, and installation of premium elevator cabin interiors, escalator cladding, architraves, and architectural metal fabrication.
-        </p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Get Free Quote</a>
-          <a href="#services" class="btn btn-outline"><i class="fa-solid fa-compass"></i> Explore Services</a>
+        <div class="hero-bottom container">
+          <a href="#company" class="scroll-cue"
+            ><span aria-hidden="true">↓</span> Discover Skylark</a
+          >
+          <div
+            class="slider-controls"
+            role="group"
+            aria-label="Slideshow controls"
+          >
+            <button
+              type="button"
+              class="slide-dot is-active"
+              data-go-slide="0"
+              aria-label="Show elevator aesthetics"
+              aria-pressed="true"
+            >
+              <span>01</span><i></i>
+            </button>
+            <button
+              type="button"
+              class="slide-dot"
+              data-go-slide="1"
+              aria-label="Show escalator aesthetics"
+              aria-pressed="false"
+            >
+              <span>02</span><i></i>
+            </button>
+            <button
+              type="button"
+              class="slide-dot"
+              data-go-slide="2"
+              aria-label="Show cabin interiors"
+              aria-pressed="false"
+            >
+              <span>03</span><i></i>
+            </button>
+            <button
+              type="button"
+              id="slidePause"
+              class="pause-button"
+              aria-label="Pause slideshow"
+              aria-pressed="false"
+            >
+              Ⅱ
+            </button>
+          </div>
+          <p class="hero-motto">SAFE <b>·</b> RELIABLE <b>·</b> ALWAYS UP</p>
+        </div>
+      </section>
+      <div class="capability-strip" role="group" aria-label="Our capabilities">
+        <div class="container">
+          <span>DESIGN WITH PURPOSE</span><b aria-hidden="true">✦</b
+          ><span>PRECISION FABRICATION</span><b aria-hidden="true">✦</b
+          ><span>CONSIDERED INSTALLATION</span><b aria-hidden="true">✦</b
+          ><span>FINISHES THAT INSPIRE</span>
         </div>
       </div>
-
-      <!-- Slide Indicators / Dots -->
-      <div class="slider-dots" id="sliderDots">
-        <span class="dot active" data-slide="0"></span>
-        <span class="dot" data-slide="1"></span>
-        <span class="dot" data-slide="2"></span>
-        <span class="dot" data-slide="3"></span>
-        <span class="dot" data-slide="4"></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Elevators & Escalators Aesthetics & Fabrication Section / Highlights -->
-  <div class="highlights reveal">
-    <div class="container">
-      <div class="highlights-grid">
-        <div class="highlight-card" style="background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('images/cabin-interior.webp');">
-          <div class="highlight-icon">
-            <i class="fa-solid fa-shield-halved"></i>
+      <section id="company" class="section company-section">
+        <div class="container company-grid">
+          <div class="company-visual reveal">
+            <img
+              src="images/elevator-interior-v2.webp"
+              width="900"
+              height="1200"
+              alt="Elevator interior inspiration with architectural finishes"
+              loading="lazy"
+            />
+            <div class="vertical-label">
+              A NEW PERSPECTIVE ON VERTICAL SPACES
+            </div>
+            <div class="visual-stamp">
+              <span class="stamp-icon" aria-hidden="true">↗</span
+              ><span>Design-led.<br />Detail-driven.</span>
+            </div>
           </div>
-          <h3>Safety & Quality Codes</h3>
-          <p>Full compliance with international vertical transportation quality & safety standards.</p>
-        </div>
-        <div class="highlight-card" style="background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('images/architraves.webp');">
-          <div class="highlight-icon">
-            <i class="fa-solid fa-drafting-compass"></i>
-          </div>
-          <h3>Custom Engineering</h3>
-          <p>Advanced CAD & 3D perspective cabin designs, precision joinery, and custom stainless fabrication.</p>
-        </div>
-        <div class="highlight-card" style="background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('images/escalator-cladding.webp');">
-          <div class="highlight-icon">
-            <i class="fa-solid fa-headset"></i>
-          </div>
-          <h3>Direct Assistance</h3>
-          <p>Direct support available. Call Phone: <strong>7054929356</strong> for consultations.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- The Company Section -->
-  <section id="company" class="section-padding reveal">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-image">
-          <div class="img-container parallax-box">
-            <img src="images/facility-complex.webp" alt="Skylark Elevators Facility & High-rise Complex" width="1000" height="667" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="Skylark Elevators Facility & Architectural High-rise Complex">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
-          </div>
-          <div class="about-badge">
-            <div class="number">100%</div>
-            <div class="label">Quality Commitment</div>
-          </div>
-        </div>
-        <div class="about-content">
-          <span class="section-tag">About Skylark</span>
-          <h2>Committed to Work Excellence and Aesthetic Engineering</h2>
-          <p>
-            <strong>Skylark Elevators And Fabrication Company</strong> works with leading contractors and consultants to provide cutting-edge products that enhance the aesthetic appeal and functionality of modern buildings.
-          </p>
-          <p>
-            We specialize in state-of-the-art systems for elevators, escalators, cabin interiors, door cladding, glass cabins & doors, ceilings, handrails, and bespoke metal fabrication.
-          </p>
-          <ul class="about-list">
-            <li><i class="fa-solid fa-circle-check"></i> Elevator Cabin Interiors & Glass Cabins</li>
-            <li><i class="fa-solid fa-circle-check"></i> Escalator Cladding & Child Safety Guards</li>
-            <li><i class="fa-solid fa-circle-check"></i> Precision Architraves & Door Cladding</li>
-            <li><i class="fa-solid fa-circle-check"></i> Turnkey Design, CAD Modeling & Installation</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-paper-plane"></i> Send Enquiry</a>
-        </div>
-      </div>
-
-      <!-- Vision / Mission / Values Section -->
-      <div class="vmv-container reveal" style="margin-top: 4rem;">
-        <div class="section-header" style="margin-bottom: 2.5rem;">
-          <span class="section-tag">Our Guiding Pillars</span>
-          <h2 class="section-title">Vision, Mission & Values</h2>
-          <p class="section-subtitle">Empowering vertical transportation aesthetics with unwavering integrity, technical brilliance, and customer focus.</p>
-        </div>
-
-        <div class="vmv-grid">
-          <!-- Vision Card -->
-          <div class="vmv-card">
-            <div class="vmv-badge"><i class="fa-solid fa-eye"></i></div>
-            <h3>Our Vision</h3>
-            <p>
-              To become the preferred long-term partner for our clients by crafting engineered aesthetic systems that elevate the luxury, convenience, and architectural distinction of every project.
+          <div class="company-copy reveal">
+            <p class="eyebrow">01 / THE COMPANY</p>
+            <h2>
+              Small details.<br /><span class="muted-heading"
+                >Extraordinary</span
+              ><br />possibilities.
+            </h2>
+            <p class="lead">
+              The journey through a building should feel as considered as the
+              building itself.
             </p>
-          </div>
-
-          <!-- Mission Card -->
-          <div class="vmv-card highlight-border">
-            <div class="vmv-badge"><i class="fa-solid fa-bullseye"></i></div>
-            <h3>Our Mission</h3>
             <p>
-              Deliver unmatched value to all stakeholders through state-of-the-art elevator and escalator aesthetic solutions, driven by rigorous quality standards, service excellence, and punctual project completion. Skylark stands as an equal opportunity organization committed to professional integrity and fostering growth for our team.
+              Skylark Elevators And Fabrication Company brings a fresh, focused
+              approach to elevator and escalator aesthetics. We bring together
+              cabin interiors, architectural cladding and bespoke metalwork to
+              give everyday movement a distinctive setting.
             </p>
-          </div>
-
-          <!-- Values Card -->
-          <div class="vmv-card">
-            <div class="vmv-badge"><i class="fa-solid fa-heart-pulse"></i></div>
-            <h3>Our Values</h3>
             <p>
-              Leveraging deep in-house engineering knowledge, extensive field experience, and robust technical capabilities to solve complex challenges—guided by family values that treat every client project with individual attention and care.
+              As a growing company, we’re building our story around what
+              matters: thoughtful design, clear communication and careful
+              attention to your requirements, from concept through installation.
             </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Products Section -->
-  <section id="products" class="section-padding bg-light reveal">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Aesthetic Systems</span>
-        <h2 class="section-title">Products Range</h2>
-        <p class="section-subtitle">A one-stop solution for convenience, luxury, and passenger safety in vertical transportation aesthetics.</p>
-      </div>
-
-      <div class="products-grid">
-        <div class="product-card">
-          <div class="product-img img-container">
-            <img src="images/cabin-interior.webp" alt="Elevator Cabin Interior Design" width="600" height="400" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="Elevator Cabin Interiors & Ceilings">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
-          </div>
-          <div class="product-body">
-            <div class="product-icon">
-              <i class="fa-solid fa-door-open"></i>
-            </div>
-            <h3>Cabin Interiors & Ceilings</h3>
-            <p>Luxurious stainless steel, mirror finishes, wood veneer, and LED decorative ceilings engineered for elevator cabins.</p>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-img img-container">
-            <img src="images/architraves.webp" alt="Architraves & Door Cladding" width="600" height="400" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="Precision Architraves & Door Cladding">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
-          </div>
-          <div class="product-body">
-            <div class="product-icon">
-              <i class="fa-solid fa-border-all"></i>
-            </div>
-            <h3>Architraves & Door Cladding</h3>
-            <p>Precision-formed stainless steel architraves, door skins, jambs, and glass doors with custom etched patterns.</p>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-img img-container">
-            <img src="images/escalator-cladding.webp" alt="Escalator Cladding" width="600" height="400" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="Escalator Cladding & Bollards">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
-          </div>
-          <div class="product-body">
-            <div class="product-icon">
-              <i class="fa-solid fa-stairs"></i>
-            </div>
-            <h3>Escalator Cladding & Bollards</h3>
-            <p>Sleek outer/under escalator cladding panels, floor bollards, and safety glass guards built to strict standards.</p>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-img img-container">
-            <img src="images/handrails-flooring.webp" alt="Handrails & Cabin Flooring" width="600" height="400" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="Handrails & Heavy-Duty Cabin Flooring">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
-          </div>
-          <div class="product-body">
-            <div class="product-icon">
-              <i class="fa-solid fa-grip-lines-vertical"></i>
-            </div>
-            <h3>Handrails & Cabin Flooring</h3>
-            <p>Ergonomic stainless handrails, stone, marble, and heavy-duty anti-slip PVC floor linings for passenger lifts.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Categorized Product Groups (Elevators & Escalators) -->
-      <div class="product-groups-container reveal" style="margin-top: 4rem;">
-        <div class="section-header" style="margin-bottom: 2.5rem;">
-          <span class="section-tag">Categorized Solutions</span>
-          <h2 class="section-title">Elevator & Escalator Aesthetic Groups</h2>
-          <p class="section-subtitle">Explore our specialized interior and exterior cladding components tailored for vertical transportation.</p>
-        </div>
-
-        <div class="product-groups-grid">
-          <!-- Elevators Product Group -->
-          <div class="product-group-card">
-            <div class="product-group-header">
-              <div class="product-group-icon"><i class="fa-solid fa-elevator"></i></div>
+            <div class="company-values">
               <div>
-                <h3>Elevator Systems</h3>
-                <p>Complete aesthetic enhancement and protection for passenger & freight cabins.</p>
+                <span aria-hidden="true">◇</span>
+                <h3>Design integrity</h3>
+                <p>Materials and finishes in harmony with your space.</p>
               </div>
-            </div>
-            <ul class="product-items-list">
-              <li><i class="fa-solid fa-check"></i> Cabin Interiors</li>
-              <li><i class="fa-solid fa-check"></i> Architraves</li>
-              <li><i class="fa-solid fa-check"></i> Handrails</li>
-              <li><i class="fa-solid fa-check"></i> Decorative Ceilings</li>
-              <li><i class="fa-solid fa-check"></i> Door Cladding</li>
-              <li><i class="fa-solid fa-check"></i> Glass Doors</li>
-              <li><i class="fa-solid fa-check"></i> Cabin Flooring</li>
-            </ul>
-            <div style="margin-top: 1.5rem;">
-              <a href="#contact" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-layer-group"></i> View Projects</a>
-            </div>
-          </div>
-
-          <!-- Escalators Product Group -->
-          <div class="product-group-card">
-            <div class="product-group-header">
-              <div class="product-group-icon"><i class="fa-solid fa-stairs"></i></div>
               <div>
-                <h3>Escalator Systems</h3>
-                <p>Precision exterior cladding, safety barriers, and floor bollards for moving walkways.</p>
+                <span aria-hidden="true">⊞</span>
+                <h3>Engineering care</h3>
+                <p>Details developed around equipment and site requirements.</p>
               </div>
             </div>
-            <ul class="product-items-list">
-              <li><i class="fa-solid fa-check"></i> Escalator Cladding</li>
-              <li><i class="fa-solid fa-check"></i> Escalator Floor Bollards</li>
-              <li><i class="fa-solid fa-check"></i> Child Safety Guards</li>
-            </ul>
-            <div style="margin-top: 1.5rem;">
-              <a href="#contact" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-layer-group"></i> View Projects</a>
+            <a class="text-link" href="#contact"
+              >Let’s build something considered
+              <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+        <div class="container principles reveal">
+          <div>
+            <span>OUR VISION</span>
+            <p>
+              To make thoughtfully designed vertical spaces part of every
+              building’s identity.
+            </p>
+          </div>
+          <div>
+            <span>OUR MISSION</span>
+            <p>
+              To connect design, material selection and fabrication through one
+              considered process.
+            </p>
+          </div>
+          <div>
+            <span>OUR VALUES</span>
+            <p>
+              Integrity in communication. Care in execution. Respect for every
+              client’s vision.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="products" class="section products-section">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <p class="eyebrow">02 / OUR COLLECTION</p>
+              <h2>
+                Made for movement.<br /><span class="muted-heading"
+                  >Designed to stand apart.</span
+                >
+              </h2>
+            </div>
+            <p>
+              A coordinated range of aesthetic solutions.<br />One distinctive
+              architectural language.
+            </p>
+          </div>
+          <div class="collection-bar">
+            <div class="filters" role="group" aria-label="Filter products">
+              <button
+                type="button"
+                class="filter active"
+                data-filter="all"
+                aria-pressed="true"
+              >
+                All solutions <span>06</span></button
+              ><button
+                type="button"
+                class="filter"
+                data-filter="elevators"
+                aria-pressed="false"
+              >
+                Elevators</button
+              ><button
+                type="button"
+                class="filter"
+                data-filter="escalators"
+                aria-pressed="false"
+              >
+                Escalators</button
+              ><button
+                type="button"
+                class="filter"
+                data-filter="fabrication"
+                aria-pressed="false"
+              >
+                Fabrication
+              </button>
+            </div>
+            <span
+              class="collection-caption"
+              id="productCount"
+              aria-live="polite"
+              >6 considered solutions</span
+            >
+          </div>
+          <div class="products-grid">
+            <article class="product-card" data-category="elevators">
+              <button
+                type="button"
+                class="product-image"
+                data-product="cabins"
+                aria-label="View cabin interiors details"
+              >
+                <img
+                  src="images/elevator-interior-v2.webp"
+                  width="800"
+                  height="950"
+                  alt="Elevator cabin interior inspiration"
+                  loading="lazy"
+                /><span class="product-number">01 / ELEVATORS</span
+                ><span class="round-arrow" aria-hidden="true">↗</span>
+              </button>
+              <div class="product-info">
+                <h3>
+                  <button type="button" data-product="cabins">
+                    Cabin interiors
+                  </button>
+                </h3>
+                <p>A complete interior. A cohesive impression.</p>
+                <div class="tags">
+                  <span>Wall panels</span><span>Mirrors</span
+                  ><span>Glass cabins</span>
+                </div>
+              </div>
+            </article>
+            <article class="product-card" data-category="elevators">
+              <button
+                type="button"
+                class="product-image"
+                data-product="doors"
+                aria-label="View architraves and door cladding details"
+              >
+                <img
+                  src="images/elevator-lobby.webp"
+                  width="800"
+                  height="950"
+                  alt="Elevator entrances with metal door frames"
+                  loading="lazy"
+                /><span class="product-number">02 / ELEVATORS</span
+                ><span class="round-arrow" aria-hidden="true">↗</span>
+              </button>
+              <div class="product-info">
+                <h3>
+                  <button type="button" data-product="doors">
+                    Architraves &amp; door cladding
+                  </button>
+                </h3>
+                <p>An entrance that sets the tone.</p>
+                <div class="tags">
+                  <span>Door skins</span><span>Jambs</span
+                  ><span>Glass doors</span>
+                </div>
+              </div>
+            </article>
+            <article class="product-card" data-category="escalators">
+              <button
+                type="button"
+                class="product-image"
+                data-product="escalators"
+                aria-label="View escalator cladding details"
+              >
+                <img
+                  src="images/escalator.webp"
+                  width="800"
+                  height="950"
+                  alt="Escalator cladding and glass balustrade inspiration"
+                  loading="lazy"
+                /><span class="product-number">03 / ESCALATORS</span
+                ><span class="round-arrow" aria-hidden="true">↗</span>
+              </button>
+              <div class="product-info">
+                <h3>
+                  <button type="button" data-product="escalators">
+                    Escalator cladding
+                  </button>
+                </h3>
+                <p>Seamless lines, from one level to the next.</p>
+                <div class="tags">
+                  <span>Side panels</span><span>Soffits</span
+                  ><span>Finishes</span>
+                </div>
+              </div>
+            </article>
+            <article class="product-card" data-category="elevators">
+              <button
+                type="button"
+                class="product-image detail-crop"
+                data-product="finishes"
+                aria-label="View ceilings handrails and flooring details"
+              >
+                <img
+                  src="images/elevator-interior-v2.webp"
+                  width="800"
+                  height="950"
+                  alt="Interior material and finish inspiration for elevator cabins"
+                  loading="lazy"
+                /><span class="product-number">04 / ELEVATORS</span
+                ><span class="round-arrow" aria-hidden="true">↗</span>
+              </button>
+              <div class="product-info">
+                <h3>
+                  <button type="button" data-product="finishes">
+                    Ceilings, handrails &amp; flooring
+                  </button>
+                </h3>
+                <p>The finishing touches that bring it together.</p>
+                <div class="tags">
+                  <span>Lighting</span><span>Handrails</span
+                  ><span>Floor finishes</span>
+                </div>
+              </div>
+            </article>
+            <article class="product-card" data-category="escalators">
+              <button
+                type="button"
+                class="product-image"
+                data-product="guards"
+                aria-label="View guards and bollards details"
+              >
+                <img
+                  src="images/escalator.webp"
+                  width="800"
+                  height="950"
+                  alt="Escalator setting illustrating the context for guards and bollards"
+                  loading="lazy"
+                /><span class="product-number">05 / ESCALATORS</span
+                ><span class="round-arrow" aria-hidden="true">↗</span>
+              </button>
+              <div class="product-info">
+                <h3>
+                  <button type="button" data-product="guards">
+                    Guards &amp; floor bollards
+                  </button>
+                </h3>
+                <p>Thoughtful details for shared spaces.</p>
+                <div class="tags">
+                  <span>Glass guards</span><span>Bollards</span
+                  ><span>Site detailing</span>
+                </div>
+              </div>
+            </article>
+            <article class="product-card" data-category="fabrication">
+              <button
+                type="button"
+                class="product-image"
+                data-product="metalwork"
+                aria-label="View bespoke metalwork details"
+              >
+                <img
+                  src="images/elevator-lobby.webp"
+                  width="800"
+                  height="950"
+                  alt="Architectural lines and metalwork inspiration"
+                  loading="lazy"
+                /><span class="product-number">06 / FABRICATION</span
+                ><span class="round-arrow" aria-hidden="true">↗</span>
+              </button>
+              <div class="product-info">
+                <h3>
+                  <button type="button" data-product="metalwork">
+                    Bespoke metalwork
+                  </button>
+                </h3>
+                <p>Your design language, precisely expressed.</p>
+                <div class="tags">
+                  <span>Stainless steel</span><span>Forming</span
+                  ><span>Custom details</span>
+                </div>
+              </div>
+            </article>
+          </div>
+          <p class="image-disclaimer">
+            Aesthetic inspiration, not a completed-project portfolio. Final
+            designs, materials and specifications are agreed for each enquiry.
+          </p>
+        </div>
+      </section>
+      <section id="film" class="film-section" aria-labelledby="filmTitle">
+        <img
+          class="film-poster"
+          src="images/escalator.webp"
+          width="1920"
+          height="1080"
+          alt="Architectural view of an escalator"
+          loading="lazy"
+        />
+        <div class="film-shade"></div>
+        <div class="container film-content">
+          <div>
+            <p class="eyebrow light">A PERSPECTIVE IN MOTION</p>
+            <h2 id="filmTitle">
+              Architecture moves us.<br /><em>Details stay with us.</em>
+            </h2>
+            <p>Take a closer look at the spaces between destinations.</p>
+          </div>
+          <button type="button" class="film-play" id="openFilm">
+            <span class="film-play-icon" aria-hidden="true">▶</span
+            ><span
+              >PLAY THE VISUAL STORY <small>DESIGN INSPIRATION</small></span
+            >
+          </button>
+        </div>
+        <div class="film-bottom container">
+          <span>SKYLARK / MOVEMENT &amp; MATERIAL</span
+          ><span>Concept visuals · not Skylark project footage</span>
+        </div>
+      </section>
+      <section id="services" class="section expertise-section">
+        <div class="container expertise-grid">
+          <div class="expertise-intro reveal">
+            <p class="eyebrow">03 / OUR EXPERTISE</p>
+            <h2>
+              Creative vision.<br /><span class="muted-heading"
+                >Technical thinking.</span
+              >
+            </h2>
+            <p>
+              A beautiful finish begins long before fabrication. We connect the
+              design intent with the practical details of the equipment and the
+              space.
+            </p>
+            <a class="button" href="#contact"
+              >Tell us about your project <span aria-hidden="true">↗</span></a
+            >
+            <div class="engineering-note">
+              <span aria-hidden="true">↗</span>
+              <p>
+                Moving equipment needs more than conventional interior design.
+                Fixings, clearances and material choices must be reviewed
+                against the applicable equipment and project requirements.
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Our Expertise Section -->
-  <section class="section-padding expertise-section reveal">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Engineering Discipline</span>
-        <h2 class="section-title">Our Specialized Expertise</h2>
-        <p class="section-subtitle">Why vertical transportation aesthetics requires high-precision engineering beyond standard interior design.</p>
-      </div>
-
-      <div class="expertise-grid">
-        <div class="expertise-card">
-          <div class="expertise-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-          <h3>Specialized Motion & Safety Requirements</h3>
-          <p>
-            Designing and executing decorative finishes for passenger moving equipment demands specialized expertise because dynamic elements—such as moving elevator doors and escalator step clearances—must comply with stringent safety and technical codes across their operating lifecycle. Conventional interior design methods cannot be applied to vertical transportation systems.
-          </p>
-        </div>
-
-        <div class="expertise-card">
-          <div class="expertise-icon"><i class="fa-solid fa-compass-drafting"></i></div>
-          <h3>Pre-Engineering & Technical Solutions</h3>
-          <p>
-            Skylark maintains comprehensive mastery of vertical transportation safety codes and contemporary aesthetic trends. Prior to fabrication and onsite assembly, we provide complete engineering blueprints:
-          </p>
-          <ul class="expertise-list">
-            <li><i class="fa-solid fa-circle-check"></i> Standardized fixation methodology adhering to VT quality and safety codes</li>
-            <li><i class="fa-solid fa-circle-check"></i> Detailed joinery and attachment engineering around dynamic moving assemblies</li>
-            <li><i class="fa-solid fa-circle-check"></i> Detailed CAD technical drawings & 3D perspective cabin interior renders</li>
-            <li><i class="fa-solid fa-circle-check"></i> Optimized material selection based on elevator type and client aesthetic goals</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="section-padding bg-light reveal">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Core Competencies</span>
-        <h2 class="section-title">Our Expertise Services</h2>
-        <p class="section-subtitle">Tailored engineering solutions meeting vertical transportation and architectural fabrication needs.</p>
-      </div>
-
-      <div class="services-grid">
-        <!-- Service 1 -->
-        <div class="service-card">
-          <div class="service-img img-container">
-            <img src="images/cabin-design.webp" alt="Elevator Cabin Aesthetics" width="600" height="400" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="Elevator Cabin Interiors Service">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
-          </div>
-          <div class="service-body">
-            <div class="service-icon"><i class="fa-solid fa-elevator"></i></div>
-            <h3 class="service-title">Elevator Cabin Interiors</h3>
-            <p class="service-text">Design and fabrication of decorative cabin panels, mirrors, handrails, and ambient lighting concepts.</p>
-            <a href="#contact" class="service-link">Inquire Now <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- Service 2 -->
-        <div class="service-card">
-          <div class="service-img img-container">
-            <img src="images/architraves.webp" alt="Architraves & Door Cladding" width="600" height="400" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="Architraves & Door Cladding Service">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
-          </div>
-          <div class="service-body">
-            <div class="service-icon"><i class="fa-solid fa-door-closed"></i></div>
-            <h3 class="service-title">Architraves & Cladding</h3>
-            <p class="service-text">Custom stainless steel architraves, entrance frames, and elevator door cladding in hairline, mirror, or brass finishes.</p>
-            <a href="#contact" class="service-link">Inquire Now <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="services-list reveal">
+            <details open>
+              <summary>
+                <span class="service-index">01</span>
+                <h3>Design &amp; technical development</h3>
+                <span class="expand" aria-hidden="true">+</span>
+              </summary>
+              <div class="service-description">
+                <p>
+                  Translate your brief into coordinated CAD drawings, cabin
+                  layout studies and 3D perspectives. Review proportions,
+                  lighting and finishes before fabrication begins.
+                </p>
+                <div class="tags">
+                  <span>CAD detailing</span><span>3D perspectives</span
+                  ><span>Design coordination</span>
+                </div>
+              </div>
+            </details>
+            <details>
+              <summary>
+                <span class="service-index">02</span>
+                <h3>Material &amp; finish selection</h3>
+                <span class="expand" aria-hidden="true">+</span>
+              </summary>
+              <div class="service-description">
+                <p>
+                  Explore brushed and mirror stainless steel, decorative metal,
+                  glass, veneer and flooring options. Selections consider
+                  appearance, maintenance, weight and suitability for the
+                  equipment.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>
+                <span class="service-index">03</span>
+                <h3>Precision fabrication</h3>
+                <span class="expand" aria-hidden="true">+</span>
+              </summary>
+              <div class="service-description">
+                <p>
+                  Custom panels, architraves and architectural elements
+                  developed through cutting, forming and joinery. Fixing details
+                  are coordinated around moving parts and the approved design.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>
+                <span class="service-index">04</span>
+                <h3>Installation &amp; site coordination</h3>
+                <span class="expand" aria-hidden="true">+</span>
+              </summary>
+              <div class="service-description">
+                <p>
+                  Coordinate site measurements, installation sequencing and
+                  final detailing with your project team. Installation scope and
+                  handover requirements are confirmed in the proposal.
+                </p>
+              </div>
+            </details>
           </div>
         </div>
-
-        <!-- Service 3 -->
-        <div class="service-card">
-          <div class="service-img img-container">
-            <img src="images/escalator-cladding.webp" alt="Escalator Aesthetics" width="600" height="400" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="Escalator Aesthetics & Safety Cladding">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
+      </section>
+      <section class="process-section section" aria-labelledby="processTitle">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <p class="eyebrow light">04 / THE WAY WE WORK</p>
+              <h2 id="processTitle">
+                From your vision.<br /><span>To the last detail.</span>
+              </h2>
+            </div>
+            <p>
+              A clear path from the first conversation<br />to a considered
+              finished space.
+            </p>
           </div>
-          <div class="service-body">
-            <div class="service-icon"><i class="fa-solid fa-stairs"></i></div>
-            <h3 class="service-title">Escalator Aesthetics</h3>
-            <p class="service-text">Escalator side cladding, under-deck covers, floor bollards, and specialized child safety glass barriers.</p>
-            <a href="#contact" class="service-link">Inquire Now <i class="fa-solid fa-arrow-right"></i></a>
+          <ol class="process-grid">
+            <li>
+              <span class="process-number">01</span>
+              <h3>Understand</h3>
+              <p>
+                Share your brief, drawings and site requirements. We start by
+                listening.
+              </p>
+            </li>
+            <li>
+              <span class="process-number">02</span>
+              <h3>Develop</h3>
+              <p>
+                Align the aesthetic direction, materials and technical details.
+              </p>
+            </li>
+            <li>
+              <span class="process-number">03</span>
+              <h3>Create</h3>
+              <p>
+                Move from approved details to carefully coordinated fabrication.
+              </p>
+            </li>
+            <li>
+              <span class="process-number">04</span>
+              <h3>Complete</h3>
+              <p>
+                Coordinate installation and review the agreed scope together.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+      <section class="section faq-section" aria-labelledby="faqTitle">
+        <div class="container faq-grid">
+          <div>
+            <p class="eyebrow">A FEW HELPFUL DETAILS</p>
+            <h2 id="faqTitle">
+              Before we<br /><span class="muted-heading">begin.</span>
+            </h2>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>
+                What should I include in my enquiry?<span aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <p>
+                Share the product or service you need, your site location,
+                approximate quantities and preferred timeline. Drawings,
+                dimensions and reference images help us understand the scope.
+                You can send attachments in WhatsApp after opening your enquiry.
+              </p>
+            </details>
+            <details>
+              <summary>
+                Can finishes be customised?<span aria-hidden="true">+</span>
+              </summary>
+              <p>
+                Yes. We can discuss materials, colours, panel patterns, lighting
+                and other details around your design intent. Availability and
+                suitability are confirmed during design review; physical samples
+                are recommended before final approval.
+              </p>
+            </details>
+            <details>
+              <summary>
+                Do you supply complete lift systems?<span aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <p>
+                This collection focuses on elevator and escalator aesthetics,
+                interiors, cladding and fabrication. For a complete lift system
+                or a maintenance requirement, contact us to confirm the
+                available scope before planning your purchase.
+              </p>
+            </details>
+            <details>
+              <summary>
+                Are the images completed Skylark projects?<span
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <p>
+                No. Skylark is a growing company. Photography and film on this
+                website illustrate design inspiration and product contexts, not
+                completed Skylark projects or customer endorsements.
+              </p>
+            </details>
           </div>
         </div>
-
-        <!-- Service 4 -->
-        <div class="service-card">
-          <div class="service-img img-container">
-            <img src="images/metal-fabrication.webp" alt="Architectural Metal Fabrication" width="600" height="400" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="Custom Architectural Metal Fabrication">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
+      </section>
+      <section id="contact" class="section contact-section">
+        <div class="container contact-grid">
+          <div class="contact-copy reveal">
+            <p class="eyebrow">05 / START A CONVERSATION</p>
+            <h2>
+              Your next space.<br /><span class="muted-heading"
+                >Let’s elevate it.</span
+              >
+            </h2>
+            <p>
+              Have a design in mind, a drawing on your desk or simply a
+              question? We’d like to hear it.
+            </p>
+            <div class="contact-links">
+              <a href="tel:+917054929356"
+                ><span>CALL / WHATSAPP — SHAFI</span
+                ><strong
+                  >+91&nbsp;70549&nbsp;29356
+                  <b aria-hidden="true">↗</b></strong
+                ></a
+              ><a href="mailto:info@skylark-sa.com"
+                ><span>EMAIL US</span
+                ><strong
+                  >info@skylark-sa.com <b aria-hidden="true">↗</b></strong
+                ></a
+              >
+            </div>
+            <p class="contact-footnote">
+              A focused conversation. A considered solution.
+            </p>
           </div>
-          <div class="service-body">
-            <div class="service-icon"><i class="fa-solid fa-gears"></i></div>
-            <h3 class="service-title">Custom Metal Fabrication</h3>
-            <p class="service-text">Heavy & decorative metal fabrication, laser cutting, CNC bending, and specialized joinery development.</p>
-            <a href="#contact" class="service-link">Inquire Now <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- Service 5 -->
-        <div class="service-card">
-          <div class="service-img img-container">
-            <img src="images/cad-installation.webp" alt="CAD Design & Installation" width="600" height="400" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="CAD Design & Onsite Installation Engineering">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
-          </div>
-          <div class="service-body">
-            <div class="service-icon"><i class="fa-solid fa-drafting-compass"></i></div>
-            <h3 class="service-title">CAD Design & Turnkey Onsite Fitting</h3>
-            <p class="service-text">3D perspective cabin designs, detailed engineering CAD drawings, and certified site installation execution.</p>
-            <a href="#contact" class="service-link">Inquire Now <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="section-padding reveal">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Get In Touch</span>
-        <h2 class="section-title">Connect With Our Team</h2>
-        <p class="section-subtitle">Have an elevator aesthetic or fabrication requirement? Send us an enquiry via WhatsApp or using our quick form below.</p>
-      </div>
-
-      <div class="contact-grid">
-        <!-- Showcase Image Card -->
-        <div class="contact-showcase">
-          <div class="img-container parallax-box" style="height: 100%; min-height: 380px;">
-            <img src="images/facility-complex.webp" alt="Elevator Engineering Showcase" width="1000" height="667" loading="lazy" decoding="async" data-lightbox="gallery" data-caption="Elevator Engineering & Aesthetic Showcase">
-            <div class="zoom-badge"><i class="fa-solid fa-expand"></i> Click to enlarge</div>
-          </div>
-          <div class="contact-showcase-overlay">
-            <h3>Custom Aesthetic Engineering</h3>
-            <p>Elevator cabin interiors, escalator cladding & specialized architectural metal fabrication.</p>
-            <div class="contact-person-badge">
-              <i class="fa-brands fa-whatsapp"></i>
-              <div class="contact-person-info">
-                <h4>Shafi - Direct Support</h4>
-                <p>Phone: 7054929356</p>
+          <form id="enquiryForm" class="enquiry-form">
+            <h3>Tell us what you have in mind.</h3>
+            <p>Start your enquiry on WhatsApp.</p>
+            <div class="form-row">
+              <div class="field">
+                <label for="fullName">Your name <span>*</span></label
+                ><input
+                  id="fullName"
+                  type="text"
+                  name="name"
+                  autocomplete="name"
+                  required
+                  minlength="2"
+                  maxlength="100"
+                  placeholder="Full name"
+                />
+              </div>
+              <div class="field">
+                <label for="phone">Phone number <span>*</span></label
+                ><input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  required
+                  minlength="7"
+                  maxlength="24"
+                  placeholder="Include country code"
+                />
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- WhatsApp Form -->
-        <div class="contact-form-container">
-          <h3>Send Enquiry</h3>
-          <p>Fill in your details below to send an enquiry via WhatsApp.</p>
-
-          <form id="whatsappForm">
-            <div class="form-group">
-              <label for="formName">Your Full Name</label>
-              <input type="text" id="formName" class="form-control" placeholder="Enter your full name" required>
-            </div>
-
-            <div class="form-group">
-              <label for="formPhone">Phone Number</label>
-              <input type="tel" id="formPhone" class="form-control" placeholder="Enter your contact number" required>
-            </div>
-
-            <div class="form-group">
-              <label for="formService">Select Product / Service Required</label>
-              <select id="formService" class="form-control" required>
-                <option value="Elevator Cabin Interiors">Elevator Cabin Interiors</option>
-                <option value="Architraves & Door Cladding">Architraves & Door Cladding</option>
-                <option value="Escalator Aesthetics">Escalator Aesthetics & Cladding</option>
-                <option value="Custom Metal Fabrication">Custom Metal Fabrication</option>
-                <option value="CAD Design & Fitting">CAD Design & Fitting</option>
-                <option value="General Inquiry">General Inquiry</option>
+            <div class="field">
+              <label for="service">I’m interested in <span>*</span></label
+              ><select id="service" name="service" required>
+                <option value="">Select a solution</option>
+                <option>Cabin interiors</option>
+                <option>Architraves &amp; door cladding</option>
+                <option>Escalator cladding</option>
+                <option>Ceilings, handrails &amp; flooring</option>
+                <option>Guards &amp; floor bollards</option>
+                <option>Bespoke metalwork</option>
+                <option>Design &amp; installation</option>
+                <option>General enquiry</option>
               </select>
             </div>
-
-            <div class="form-group">
-              <label for="formMessage">Project Details / Message</label>
-              <textarea id="formMessage" class="form-control" placeholder="Describe your elevator or fabrication requirements..." required></textarea>
+            <div class="field">
+              <label for="message"
+                >A little about your project <span>*</span></label
+              ><textarea
+                id="message"
+                name="message"
+                required
+                minlength="10"
+                maxlength="2000"
+                rows="3"
+                placeholder="Location, requirements, approximate quantities or timeline…"
+              ></textarea>
             </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%;">
-              <i class="fa-brands fa-whatsapp"></i> Send Enquiry via WhatsApp
+            <label class="consent"
+              ><input type="checkbox" name="consent" required /><span
+                >I agree to open WhatsApp with these details to contact Skylark.
+                <a href="#privacy">Privacy information</a></span
+              ></label
+            ><button type="submit" class="button submit-button">
+              Continue to WhatsApp <span aria-hidden="true">↗</span>
             </button>
+            <p class="form-note">
+              You’ll review and send your message in WhatsApp. Nothing is sent
+              automatically.
+            </p>
+            <p id="formStatus" role="status"></p>
+            <a
+              id="whatsappFallback"
+              href="https://wa.me/917054929356"
+              class="text-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              hidden
+              >Open your prepared enquiry <span aria-hidden="true">↗</span></a
+            ><noscript
+              ><p>
+                This form needs JavaScript to prepare a message. You can still
+                <a href="https://wa.me/917054929356"
+                  >contact Skylark directly on WhatsApp</a
+                >
+                or use the phone and email links.
+              </p></noscript
+            >
           </form>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-about">
-          <a href="#home" class="logo">
-            <img src="images/logo.webp" alt="Skylark Elevators Logo" class="logo-img" style="filter: brightness(0) invert(1);" width="160" height="50">
-            <div class="logo-text">
-              <span class="logo-main" style="color: white;">SKYLARK ELEVATORS</span>
-              <span class="logo-tagline" style="color: #60a5fa;">SAFE | RELIABLE | ALWAYS UP</span>
-            </div>
-          </a>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <a href="#home" class="footer-brand"
+              >SKYLARK<span>ELEVATORS &amp; FABRICATION</span></a
+            >
+            <p>Lifting a better tomorrow.</p>
+          </div>
+          <a href="#contact" class="footer-invite"
+            >Good design starts<br />with a conversation.
+            <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <div class="footer-middle">
           <p>
-            Specialists in Elevator & Escalator Aesthetics, Cabin Interiors, Architraves, Escalator Cladding, and Architectural Steel Fabrication.
+            Elevator interiors. Escalator aesthetics.<br />Architectural
+            metalwork.
           </p>
+          <nav aria-label="Footer navigation">
+            <a href="#company">The company</a
+            ><a href="#products">Our products</a
+            ><a href="#services">Our expertise</a
+            ><a href="#contact">Contact us</a>
+          </nav>
+          <a class="back-top" href="#home" aria-label="Back to top">↑</a>
         </div>
-
-        <div>
-          <h4 class="footer-title">Navigation</h4>
-          <ul class="footer-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#company">The Company</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-title">Our Products</h4>
-          <ul class="footer-links">
-            <li><a href="#products">Cabin Interiors</a></li>
-            <li><a href="#products">Architraves & Doors</a></li>
-            <li><a href="#products">Escalator Cladding</a></li>
-            <li><a href="#products">Handrails & Flooring</a></li>
-            <li><a href="#services">Metal Fabrication</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-title">Contact Information</h4>
-          <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: #cbd5e1;"><strong>Phone:</strong> 7054929356</p>
-          <p style="font-size: 0.9rem; color: #cbd5e1;"><strong>Email:</strong> info@skylark-sa.com</p>
+        <details id="privacy" class="privacy-details">
+          <summary>Privacy &amp; image information</summary>
+          <p>
+            This website does not store your enquiry or use analytics cookies.
+            Form details stay in your browser until you choose to open WhatsApp,
+            a third-party service with its own privacy policy. Phone and email
+            links use your device’s apps. Media are design inspiration, not
+            Skylark project photographs.
+            <a href="credits.html">View image credits and licences.</a>
+          </p>
+        </details>
+        <div class="footer-bottom">
+          <p>
+            © <span id="year">2026</span> Skylark Elevators And Fabrication
+            Company.
+          </p>
+          <span>SAFE. RELIABLE. ALWAYS UP.</span>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2026 Skylark Elevators And Fabrication Company. All rights reserved.</p>
-        <p>Built with quality & aesthetic excellence.</p>
+      <a
+        class="floating-contact"
+        href="https://wa.me/917054929356"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Skylark on WhatsApp"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          aria-hidden="true"
+        >
+          <path
+            d="M21 11.5a9 9 0 0 1-13.3 7.9L3 21l1.5-4.7A9 9 0 1 1 21 11.5Z"
+          />
+          <path d="M8 7c-2 3 4 9 7 7l1-2-3-1-1 1-2-2 1-1-1-2Z" />
+        </svg>
+        <span>Let’s talk</span>
+      </a>
+    </footer>
+    <dialog
+      id="productDialog"
+      class="product-dialog"
+      aria-labelledby="dialogTitle"
+    >
+      <button
+        type="button"
+        class="dialog-close"
+        data-close-dialog
+        aria-label="Close product details"
+      >
+        ×
+      </button>
+      <div class="dialog-grid">
+        <img
+          id="dialogImage"
+          src="images/elevator-interior-v2.webp"
+          width="800"
+          height="1000"
+          alt=""
+        />
+        <div class="dialog-copy">
+          <p class="eyebrow" id="dialogCategory"></p>
+          <h2 id="dialogTitle">Product details</h2>
+          <p id="dialogDescription"></p>
+          <ul id="dialogFeatures"></ul>
+          <p class="dialog-note">
+            Illustrative imagery. Final scope, finishes and technical
+            requirements are confirmed in your proposal.
+          </p>
+          <a id="dialogEnquiry" class="button" href="#contact"
+            >Enquire about this solution <span aria-hidden="true">↗</span></a
+          >
+        </div>
       </div>
-    </div>
-  </footer>
-
-  <!-- Lightbox Modal Overlay -->
-  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true">
-    <div class="lightbox-content">
-      <button class="lightbox-close" id="lightboxClose" aria-label="Close Lightbox">&times;</button>
-      <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous Image"><i class="fa-solid fa-chevron-left"></i></button>
-      <div class="lightbox-image-wrapper">
-        <img id="lightboxImage" src="" alt="Enlarged view">
-        <div class="lightbox-caption" id="lightboxCaption"></div>
-      </div>
-      <button class="lightbox-next" id="lightboxNext" aria-label="Next Image"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-  </div>
-
-  <!-- Floating WhatsApp Button -->
-  <a href="https://api.whatsapp.com/send?phone=917054929356&text=Hi,%20I%20have%20an%20enquiry%20for%20Skylark%20Elevators%20And%20Fabrication%20Company." target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
-
-  <!-- Script -->
-  <script src="script.js"></script>
-</body>
+    </dialog>
+    <dialog
+      id="filmDialog"
+      class="film-dialog"
+      aria-labelledby="filmDialogTitle"
+    >
+      <button
+        type="button"
+        class="dialog-close"
+        data-close-dialog
+        aria-label="Close film"
+      >
+        ×
+      </button>
+      <h2 id="filmDialogTitle">A perspective in motion</h2>
+      <video
+        id="brandFilm"
+        controls
+        playsinline
+        preload="none"
+        poster="images/escalator.webp"
+        aria-label="Silent architectural design inspiration film"
+      >
+        <source src="images/skylark-motion.webm" type="video/webm" />
+        <source src="images/skylark-motion.mp4" type="video/mp4" />
+        <p>
+          Your browser cannot play this film.
+          <a href="images/skylark-motion.mp4">Download the film</a>.
+        </p>
+      </video>
+      <p>
+        Silent design-inspiration film. Not completed Skylark project footage.
+      </p>
+      <p id="videoStatus" role="status"></p>
+    </dialog>
+  </body>
 </html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.skylark-sa.com/sitemap.xml

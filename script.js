@@ -1,301 +1,381 @@
-// Skylark Elevators And Fabrication Company - Main JavaScript
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const whatsappNumber = "917054929356";
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Mobile Navigation Toggle
-  const mobileToggle = document.getElementById('mobileToggle');
-  const navMenu = document.getElementById('navMenu');
-
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      const icon = mobileToggle.querySelector('i');
-      if (icon) {
-        if (navMenu.classList.contains('active')) {
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-xmark');
-        } else {
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars');
-        }
-      }
-    });
-
-    // Close menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        const icon = mobileToggle.querySelector('i');
-        if (icon) {
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars');
-        }
-      });
-    });
-  }
-
-  // Hero Section Auto Slideshow (Every 2 seconds)
-  const slides = document.querySelectorAll('.hero-slider .slide');
-  const dots = document.querySelectorAll('.slider-dots .dot');
-  let currentSlide = 0;
-  let slideInterval;
-
-  function showSlide(index) {
-    if (slides.length === 0) return;
-
-    // Wrap around index
-    if (index >= slides.length) {
-      currentSlide = 0;
-    } else if (index < 0) {
-      currentSlide = slides.length - 1;
-    } else {
-      currentSlide = index;
+function initNavigation() {
+  const menu = document.querySelector(".navigation");
+  const toggle = document.querySelector(".menu-toggle");
+  const setOpen = (open) => {
+    menu.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute(
+      "aria-label",
+      open ? "Close navigation" : "Open navigation",
+    );
+  };
+  toggle.addEventListener("click", () =>
+    setOpen(toggle.getAttribute("aria-expanded") !== "true"),
+  );
+  menu.addEventListener("click", (event) => {
+    if (event.target.closest("a")) setOpen(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu.classList.contains("is-open")) {
+      setOpen(false);
+      toggle.focus();
     }
+  });
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".site-header")) setOpen(false);
+  });
+  window
+    .matchMedia("(max-width: 850px)")
+    .addEventListener("change", () => setOpen(false));
+  menu.addEventListener("focusout", (event) => {
+    if (!menu.contains(event.relatedTarget) && event.relatedTarget !== toggle)
+      setOpen(false);
+  });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const current = entries.find((entry) => entry.isIntersecting);
+      if (!current) return;
+      menu.querySelectorAll("a").forEach((link) => {
+        const active = link.hash === `#${current.target.id}`;
+        link.classList.toggle("active", active);
+        if (active) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    },
+    { rootMargin: "-15% 0px -70% 0px" },
+  );
+  document
+    .querySelectorAll("main > section[id]")
+    .forEach((section) => observer.observe(section));
+}
 
+function initCarousel() {
+  const hero = document.querySelector(".hero");
+  const slides = [...hero.querySelectorAll(".hero-slide")];
+  const dots = [...hero.querySelectorAll("[data-go-slide]")];
+  const pause = document.querySelector("#slidePause");
+  let current = 0;
+  let paused = reducedMotion.matches;
+  let timer;
+  let isVisible = true;
+  const updatePause = () => {
+    pause.setAttribute("aria-pressed", String(paused));
+    pause.setAttribute(
+      "aria-label",
+      paused ? "Play slideshow" : "Pause slideshow",
+    );
+    pause.textContent = paused ? "▶" : "Ⅱ";
+  };
+  const schedule = () => {
+    window.clearTimeout(timer);
+    if (!paused && !document.hidden && isVisible)
+      timer = window.setTimeout(() => show(current + 1), 6500);
+  };
+  const show = (index) => {
+    current = (index + slides.length) % slides.length;
     slides.forEach((slide, i) => {
-      if (i === currentSlide) {
-        slide.classList.add('active');
-      } else {
-        slide.classList.remove('active');
-      }
+      const active = i === current;
+      slide.classList.toggle("is-active", active);
+      slide.setAttribute("aria-hidden", String(!active));
+      slide.inert = !active;
+      dots[i].classList.toggle("is-active", active);
+      dots[i].setAttribute("aria-pressed", String(active));
     });
-
-    dots.forEach((dot, i) => {
-      if (i === currentSlide) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
+    schedule();
+  };
+  const stop = () => {
+    paused = true;
+    updatePause();
+    schedule();
+  };
+  dots.forEach((dot, index) =>
+    dot.addEventListener("click", () => {
+      stop();
+      show(index);
+    }),
+  );
+  pause.addEventListener("click", () => {
+    paused = !paused;
+    updatePause();
+    schedule();
+  });
+  hero.addEventListener("focusin", (event) => {
+    if (event.target !== pause) stop();
+  });
+  hero.addEventListener("keydown", (event) => {
+    if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+    event.preventDefault();
+    stop();
+    show(current + (event.key === "ArrowRight" ? 1 : -1));
+    dots[current].focus();
+  });
+  let touchStart = null;
+  hero.addEventListener(
+    "touchstart",
+    (event) => {
+      touchStart = {
+        x: event.changedTouches[0].clientX,
+        y: event.changedTouches[0].clientY,
+      };
+    },
+    { passive: true },
+  );
+  hero.addEventListener(
+    "touchend",
+    (event) => {
+      if (!touchStart) return;
+      const dx = event.changedTouches[0].clientX - touchStart.x;
+      const dy = event.changedTouches[0].clientY - touchStart.y;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        stop();
+        show(current + (dx < 0 ? 1 : -1));
       }
+      touchStart = null;
+    },
+    { passive: true },
+  );
+  reducedMotion.addEventListener("change", stop);
+  document.addEventListener("visibilitychange", schedule);
+  new IntersectionObserver(([entry]) => {
+    isVisible = entry.isIntersecting;
+    schedule();
+  }).observe(hero);
+  updatePause();
+  schedule();
+}
+
+function filterProducts(category) {
+  let count = 0;
+  document.querySelectorAll(".product-card").forEach((card) => {
+    card.hidden = category !== "all" && card.dataset.category !== category;
+    if (!card.hidden) count += 1;
+  });
+  document.querySelectorAll("[data-filter]").forEach((button) => {
+    const active = button.dataset.filter === category;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  document.querySelector("#productCount").textContent =
+    `${count} considered solution${count === 1 ? "" : "s"}`;
+}
+
+const productDetails = {
+  cabins: {
+    description:
+      "A coordinated approach to the entire cabin, from wall panels and mirrors to the ceiling above. Develop an interior that feels like a natural continuation of the building.",
+    features: [
+      "Decorative stainless steel, mirror and veneer options",
+      "Glass cabin concepts and coordinated panel layouts",
+      "Material weight, fixing and clearance review",
+    ],
+  },
+  doors: {
+    description:
+      "Bring a distinct identity to every arrival. Custom door skins, entrance frames and architraves connect the elevator with the surrounding architectural finishes.",
+    features: [
+      "Hairline, mirror and decorative metal finishes",
+      "Custom jambs, headers and entrance detailing",
+      "Door movement and fixation coordination",
+    ],
+  },
+  escalators: {
+    description:
+      "Create a consistent visual language around escalators with coordinated side panels, soffits and underside cladding. Each detail responds to the surrounding interior.",
+    features: [
+      "Outer and under-escalator cladding concepts",
+      "Material and joint alignment development",
+      "Coordination with equipment access and maintenance needs",
+    ],
+  },
+  finishes: {
+    description:
+      "Bring the cabin together with considered lighting, tactile handrails and a floor finish that complements the interior. Small choices make a lasting impression.",
+    features: [
+      "Decorative ceiling and LED lighting concepts",
+      "Stainless steel handrail profiles and finishes",
+      "Stone, marble and resilient flooring options, subject to load review",
+    ],
+  },
+  guards: {
+    description:
+      "Discuss glass guards and floor bollards as part of an integrated escalator setting. Layout, dimensions and fixings are developed for the site and reviewed against applicable requirements.",
+    features: [
+      "Child-safety guard design coordination",
+      "Bollard positioning and architectural finishes",
+      "Site-specific dimensions and fixing details",
+    ],
+  },
+  metalwork: {
+    description:
+      "Translate architectural ideas into custom metal elements. From decorative panels to precision-formed components, we develop the details around your design brief.",
+    features: [
+      "Custom stainless steel and decorative metal elements",
+      "Laser-cut patterns, formed panels and bespoke joinery",
+      "Drawing, material and finish coordination before fabrication",
+    ],
+  },
+};
+
+function openDialog(dialog) {
+  dialog.showModal();
+  document.body.classList.add("dialog-open");
+}
+
+function initProducts() {
+  document
+    .querySelectorAll("[data-filter]")
+    .forEach((button) =>
+      button.addEventListener("click", () =>
+        filterProducts(button.dataset.filter),
+      ),
+    );
+  document
+    .querySelectorAll("[data-filter-link]")
+    .forEach((link) =>
+      link.addEventListener("click", () =>
+        filterProducts(link.dataset.filterLink),
+      ),
+    );
+  const dialog = document.querySelector("#productDialog");
+  let selectedTitle = "";
+  document.querySelectorAll("[data-product]").forEach((button) =>
+    button.addEventListener("click", () => {
+      const card = button.closest(".product-card");
+      const detail = productDetails[button.dataset.product];
+      const sourceImage = card.querySelector("img");
+      selectedTitle = card
+        .querySelector("h3")
+        .textContent.replace(/\s+/g, " ")
+        .trim();
+      document.querySelector("#dialogTitle").textContent = selectedTitle;
+      document.querySelector("#dialogCategory").textContent =
+        `THE COLLECTION / ${card.dataset.category.toUpperCase()}`;
+      document.querySelector("#dialogDescription").textContent =
+        detail.description;
+      const image = document.querySelector("#dialogImage");
+      image.src = sourceImage.getAttribute("src");
+      image.alt = sourceImage.alt;
+      document.querySelector("#dialogFeatures").replaceChildren(
+        ...detail.features.map((feature) => {
+          const item = document.createElement("li");
+          item.textContent = feature;
+          return item;
+        }),
+      );
+      openDialog(dialog);
+    }),
+  );
+  document.querySelector("#dialogEnquiry").addEventListener("click", () => {
+    document.querySelector("#service").value = selectedTitle;
+    dialog.close();
+    document.querySelector("#fullName").focus({ preventScroll: true });
+  });
+}
+
+function initDialogs() {
+  document.querySelectorAll("dialog").forEach((dialog) => {
+    dialog
+      .querySelector("[data-close-dialog]")
+      .addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      const box = dialog.getBoundingClientRect();
+      if (
+        event.target === dialog &&
+        (event.clientX < box.left ||
+          event.clientX > box.right ||
+          event.clientY < box.top ||
+          event.clientY > box.bottom)
+      )
+        dialog.close();
     });
-  }
+    dialog.addEventListener("close", () =>
+      document.body.classList.remove("dialog-open"),
+    );
+  });
+  const film = document.querySelector("#brandFilm");
+  const dialog = document.querySelector("#filmDialog");
+  const status = document.querySelector("#videoStatus");
+  document.querySelector("#openFilm").addEventListener("click", () => {
+    openDialog(dialog);
+    status.textContent = "";
+    film.play().catch(() => {
+      status.textContent =
+        "Use the player’s play button to start the film. If playback is unavailable, the design inspiration images remain available above.";
+    });
+  });
+  dialog.addEventListener("close", () => film.pause());
+  film.addEventListener("error", () => {
+    status.textContent =
+      "The film could not load. Please try again or explore the design inspiration images above.";
+  });
+}
 
-  function startSlideshow() {
-    stopSlideshow();
-    slideInterval = setInterval(() => {
-      showSlide(currentSlide + 1);
-    }, 2000); // Sliding per 2 seconds
-  }
+function initEnquiry() {
+  const form = document.querySelector("#enquiryForm");
+  const fallback = document.querySelector("#whatsappFallback");
+  const status = document.querySelector("#formStatus");
+  form.addEventListener("input", (event) => {
+    event.target.setCustomValidity("");
+    fallback.hidden = true;
+    fallback.href = `https://wa.me/${whatsappNumber}`;
+    status.textContent = "";
+  });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const name = form.elements.name.value.trim();
+    const phone = form.elements.phone.value.trim();
+    const message = form.elements.message.value.trim();
+    form.elements.name.setCustomValidity(
+      name.length >= 2 ? "" : "Please enter your name.",
+    );
+    const digitCount = phone.replace(/\D/g, "").length;
+    const validPhone =
+      /^[+\d\s().-]+$/.test(phone) && digitCount >= 7 && digitCount <= 15;
+    form.elements.phone.setCustomValidity(
+      validPhone ? "" : "Enter a valid phone number with 7–15 digits.",
+    );
+    form.elements.message.setCustomValidity(
+      message.length >= 10
+        ? ""
+        : "Please add at least 10 characters about your requirements.",
+    );
+    if (!form.reportValidity()) return;
+    const text = `Hello Skylark Elevators And Fabrication Company,\n\nI would like to discuss a requirement:\nName: ${name}\nPhone: ${phone}\nSolution: ${form.elements.service.value}\n\n${message}`;
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+    fallback.href = url;
+    fallback.hidden = false;
+    window.open(url, "_blank", "noopener,noreferrer");
+    status.textContent =
+      "Your message is prepared, not sent. Review it in WhatsApp and press Send. If a new tab did not open, use the link below.";
+  });
+  document.querySelector('a[href="#privacy"]').addEventListener("click", () => {
+    document.querySelector("#privacy").open = true;
+  });
+}
 
-  function stopSlideshow() {
-    if (slideInterval) {
-      clearInterval(slideInterval);
-    }
-  }
-
-  // Initialize Slideshow
-  if (slides.length > 0) {
-    showSlide(0);
-    startSlideshow();
-
-    // Dot navigation
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        showSlide(idx);
-        startSlideshow(); // Reset timer
+function initReveals() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
       });
-    });
+    },
+    { threshold: 0.12 },
+  );
+  document
+    .querySelectorAll(".reveal")
+    .forEach((element) => observer.observe(element));
+}
 
-    // Pause on hover
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-      heroSection.addEventListener('mouseenter', stopSlideshow);
-      heroSection.addEventListener('mouseleave', startSlideshow);
-    }
-  }
-
-  // Active Link Highlight on Scroll
-  const sections = document.querySelectorAll('section[id]');
-  window.addEventListener('scroll', () => {
-    const scrollY = window.pageYOffset;
-
-    sections.forEach(current => {
-      const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 100;
-      const sectionId = current.getAttribute('id');
-      const navItem = document.querySelector(`.nav-menu a[href*=${sectionId}]`);
-
-      if (navItem) {
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          navItem.classList.add('active');
-        } else {
-          navItem.classList.remove('active');
-        }
-      }
-    });
-  });
-
-  // Parallax Effect on Scroll for Banner Elements
-  const parallaxBoxes = document.querySelectorAll('.parallax-box');
-  let ticking = false;
-
-  function updateParallax() {
-    const windowHeight = window.innerHeight;
-    parallaxBoxes.forEach(box => {
-      const rect = box.getBoundingClientRect();
-      if (rect.top < windowHeight && rect.bottom > 0) {
-        const speed = 0.08;
-        const yOffset = (rect.top - windowHeight / 2) * speed;
-        const img = box.querySelector('img');
-        if (img) {
-          img.style.transform = `scale(1.06) translateY(${yOffset}px)`;
-        }
-      }
-    });
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateParallax);
-      ticking = true;
-    }
-  });
-
-  // Scroll Reveal Animations
-  const reveals = document.querySelectorAll('.reveal');
-
-  if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      root: null,
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
-
-    reveals.forEach(revealEl => revealObserver.observe(revealEl));
-  } else {
-    // Fallback for older browsers
-    const handleScrollReveal = () => {
-      const windowHeight = window.innerHeight;
-      reveals.forEach(el => {
-        const revealTop = el.getBoundingClientRect().top;
-        if (revealTop < windowHeight - 50) {
-          el.classList.add('active');
-        }
-      });
-    };
-    window.addEventListener('scroll', handleScrollReveal);
-    handleScrollReveal();
-  }
-
-  // Interactive Lightbox Gallery
-  const lightboxModal = document.getElementById('lightboxModal');
-  const lightboxImg = document.getElementById('lightboxImage');
-  const lightboxCaption = document.getElementById('lightboxCaption');
-  const lightboxClose = document.getElementById('lightboxClose');
-  const lightboxPrev = document.getElementById('lightboxPrev');
-  const lightboxNext = document.getElementById('lightboxNext');
-
-  const galleryImages = Array.from(document.querySelectorAll('img[data-lightbox="gallery"]'));
-  let activeIndex = 0;
-
-  function openLightbox(index) {
-    if (!lightboxModal || galleryImages.length === 0) return;
-    activeIndex = index;
-    const targetImg = galleryImages[activeIndex];
-    lightboxImg.src = targetImg.src;
-    lightboxImg.alt = targetImg.alt || '';
-    lightboxCaption.textContent = targetImg.getAttribute('data-caption') || targetImg.alt || '';
-    lightboxModal.classList.add('active');
-    lightboxModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    if (!lightboxModal) return;
-    lightboxModal.classList.remove('active');
-    lightboxModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  function prevLightboxImage() {
-    activeIndex = (activeIndex - 1 + galleryImages.length) % galleryImages.length;
-    openLightbox(activeIndex);
-  }
-
-  function nextLightboxImage() {
-    activeIndex = (activeIndex + 1) % galleryImages.length;
-    openLightbox(activeIndex);
-  }
-
-  galleryImages.forEach((img, index) => {
-    img.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openLightbox(index);
-    });
-  });
-
-  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-  if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevLightboxImage(); });
-  if (lightboxNext) lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextLightboxImage(); });
-
-  if (lightboxModal) {
-    lightboxModal.addEventListener('click', (e) => {
-      if (e.target === lightboxModal || e.target.classList.contains('lightbox-content')) {
-        closeLightbox();
-      }
-    });
-  }
-
-  // Keyboard navigation for Lightbox
-  document.addEventListener('keydown', (e) => {
-    if (!lightboxModal || !lightboxModal.classList.contains('active')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') prevLightboxImage();
-    if (e.key === 'ArrowRight') nextLightboxImage();
-  });
-
-  // Touch Swipe Support for Lightbox
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  if (lightboxModal) {
-    lightboxModal.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    lightboxModal.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-  }
-
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    if (touchEndX < touchStartX - swipeThreshold) {
-      nextLightboxImage();
-    } else if (touchEndX > touchStartX + swipeThreshold) {
-      prevLightboxImage();
-    }
-  }
-
-  // WhatsApp Contact Form Integration
-  const whatsappForm = document.getElementById('whatsappForm');
-  if (whatsappForm) {
-    whatsappForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('formName').value.trim();
-      const phone = document.getElementById('formPhone').value.trim();
-      const service = document.getElementById('formService').value;
-      const message = document.getElementById('formMessage').value.trim();
-
-      // Skylark Elevators And Fabrication Company WhatsApp Message
-      const textMessage = `Hello Skylark Elevators And Fabrication Company,\n\nI would like to make an enquiry:\n- Name: ${name}\n- Phone: ${phone}\n- Service/Product Interested: ${service}\n- Message: ${message}`;
-
-      const encodedMessage = encodeURIComponent(textMessage);
-
-      // WhatsApp contact number (National Number: 7054929356)
-      const whatsappNumber = '917054929356';
-      const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
-
-      // Open WhatsApp in a new window/tab
-      window.open(whatsappUrl, '_blank');
-    });
-  }
-});
+initNavigation();
+initCarousel();
+initProducts();
+initDialogs();
+initEnquiry();
+initReveals();
+document.querySelector("#year").textContent = new Date().getFullYear();
