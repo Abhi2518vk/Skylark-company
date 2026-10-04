@@ -123,6 +123,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Scroll Reveal Animations
+  const reveals = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    reveals.forEach(revealEl => revealObserver.observe(revealEl));
+  } else {
+    // Fallback for older browsers
+    const handleScrollReveal = () => {
+      const windowHeight = window.innerHeight;
+      reveals.forEach(el => {
+        const revealTop = el.getBoundingClientRect().top;
+        if (revealTop < windowHeight - 50) {
+          el.classList.add('active');
+        }
+      });
+    };
+    window.addEventListener('scroll', handleScrollReveal);
+    handleScrollReveal();
+  }
+
   // WhatsApp Contact Form Integration
   const whatsappForm = document.getElementById('whatsappForm');
   if (whatsappForm) {
